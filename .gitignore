@@ -25,3 +25,5 @@ hs_err_pid*
 # IntelliJ File
 .idea/
 *.iml
+# Default ignored files
+/.idea/workspace.xml
