@@ -3,6 +3,7 @@ package main.java.model.etat;
 import main.java.model.Arme;
 import main.java.model.Position;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Epoque2 extends Epoque {
@@ -17,7 +18,12 @@ public class Epoque2 extends Epoque {
 
     @Override
     List<Object> setArme(int degat, int munition, Position[] pattern) {
-        return null;
+        List<Object> carac = new ArrayList<>();
+        carac.add(degat);
+        carac.add(munition);
+        carac.add(pattern);
+
+        return carac;
     }
 
     @Override
@@ -77,5 +83,10 @@ public class Epoque2 extends Epoque {
         List<Object> tmp = setArme(40, 1, pattern);
 
         super.put(Arme.ATOMIQUE, tmp);
+    }
+
+    @Override
+    public String toString() {
+        return "Alliés";
     }
 }

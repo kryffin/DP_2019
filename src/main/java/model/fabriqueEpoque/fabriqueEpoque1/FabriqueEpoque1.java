@@ -5,9 +5,24 @@ import main.java.model.Arme;
 import main.java.model.Bateau;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FabriqueEpoque1 implements FabriqueEpoque {
 
     final int munitionInitLeger = 12;
+
+    public List<Bateau> creerFlotte () {
+        List<Bateau> bateaux = new ArrayList<>();
+
+        bateaux.add(creerBateau1());
+        bateaux.add(creerBateau2V2());
+        bateaux.add(creerBateau3());
+        bateaux.add(creerBateau4V3());
+
+        return bateaux;
+    }
+
     public Bateau creerBateau1 () {
         return new Bateau(1, 5, Arme.LEGER);
     }

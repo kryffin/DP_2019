@@ -4,7 +4,21 @@ import main.java.model.Arme;
 import main.java.model.Bateau;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FabriqueEpoque2 implements FabriqueEpoque {
+
+    public List<Bateau> creerFlotte () {
+        List<Bateau> bateaux = new ArrayList<>();
+
+        bateaux.add(creerBateau1());
+        bateaux.add(creerBateau1());
+        bateaux.add(creerBateau1());
+        bateaux.add(creerBateau1());
+
+        return bateaux;
+    }
 
     public Bateau creerBateau1 () {
         return new Bateau(1, 15, Arme.LEGER);

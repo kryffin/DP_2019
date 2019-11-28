@@ -55,7 +55,7 @@ public class Epoque1 extends Epoque {
         tmp[0] = new Position(0,0);
         medium.add(tmp);
 
-        super.put(Arme.LEGER, medium);
+        super.put(Arme.MOYENNE, medium);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Epoque1 extends Epoque {
         tmp[0] = new Position(0,0);
         lourde.add(tmp);
 
-        super.put(Arme.LEGER, lourde);
+        super.put(Arme.LOURDE, lourde);
     }
 
     @Override
@@ -75,10 +75,13 @@ public class Epoque1 extends Epoque {
         List<Object> atomique = new ArrayList<>();
         atomique.add(1);
         atomique.add(20);
-        atomique.add(new Point(0,0));
+        atomique.add(new Position(0,0));
 
-        super.put(Arme.LEGER, atomique);
+        super.put(Arme.ATOMIQUE, atomique);
     }
 
-
+    @Override
+    public String toString() {
+        return "Nazi";
+    }
 }

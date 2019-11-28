@@ -1,6 +1,9 @@
 package main.java.model;
 
 import main.java.model.Position;
+import main.java.model.etat.Epoque;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,10 +35,18 @@ public class Bateau {
 
     public Bateau(int taille, int pv, Arme... armes) {
         compartiments = new HashMap<>();
+        int x = 0;
         for (int i = 0; i < taille; i++) {
-            Position p = new Position(0,0);
-            compartiments.put(new Position(0, 0), new Compartiment(pv, 10, armes[i]));
+            compartiments.put(new Position(x, 0), new Compartiment(pv, armes[i]));
+            x++;
             //todo recuperer les munitions actuels en fonction de l'arme et demander à l'époque
+        }
+    }
+
+    public void initArmes (Epoque epoque) {
+        for (Position p : compartiments.keySet()) {
+            if (compartiments.get(p).getArme() == null) continue;
+            compartiments.get(p).setMunitionActuel(epoque.getMunition(compartiments.get(p).getArme()));
         }
     }
 
@@ -65,5 +76,16 @@ public class Bateau {
         }
 
         return arme;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Bateau<");
+        for (Position p : compartiments.keySet()) {
+            sb.append(compartiments.get(p).toString() + ",");
+        }
+        sb.append(">");
+        return sb.toString();
     }
 }
