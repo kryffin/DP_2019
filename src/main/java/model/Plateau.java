@@ -10,7 +10,6 @@ public class Plateau {
     private ArrayList<Bateau> bateaux;
 
     public Arme getArme(Position position){
-
         Arme arme = null;
         for (Bateau bateau : bateaux){
             if(bateau.hasCompartiment(position)){
