@@ -2,7 +2,8 @@ package main.java.model;
 
 
 import java.util.ArrayList;
-
+import java.util.List;
+import java.util.Map;
 
 public class Plateau {
 
@@ -12,10 +13,10 @@ public class Plateau {
 
         Arme arme = null;
         for (Bateau bateau : bateaux){
-
-            arme = bateau.getArme(position);
+            if(bateau.hasCompartiment(position)){
+                arme = bateau.getArme(position);
+            }
         }
-
         return arme;
     }
 

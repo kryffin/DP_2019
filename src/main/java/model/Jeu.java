@@ -18,16 +18,15 @@ public class Jeu {
 
     // myTurn a true : c'est le tour du joueur1 (humain)
     // myTurn a false : c'est le tour du joueur2 (machine)
-    public Arme getArme(Position position){
+    public Arme chooseWeapon(Position position){
 
-        Arme arme;
+        Arme arme = null;
         if (myTurn){
             arme = this.plateau1.getArme(position);
         }else{
             arme = this.plateau2.getArme(position);
         }
-
         return arme;
-    }
 
+    }
 }

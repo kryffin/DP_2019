@@ -39,7 +39,7 @@ public class Bateau {
         }
     }
 
-    public boolean hasPosition(Position p) {
+    public boolean hasCompartiment(Position p) {
         return compartiments.containsKey(p);
     }
 
