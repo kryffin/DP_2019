@@ -3,7 +3,6 @@ package main.java.model;
 import main.java.model.etat.Epoque;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 
-import javax.swing.text.Position;
 
 public class Jeu {
 
@@ -23,10 +22,8 @@ public class Jeu {
 
         Arme arme;
         if (myTurn){
-
             arme = this.plateau1.getArme(position);
         }else{
-
             arme = this.plateau2.getArme(position);
         }
 

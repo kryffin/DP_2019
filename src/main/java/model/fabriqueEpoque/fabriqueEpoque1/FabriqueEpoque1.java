@@ -1,11 +1,13 @@
 package main.java.model.fabriqueEpoque.fabriqueEpoque1;
 
 import main.java.model.Arme;
+
 import main.java.model.Bateau;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 
 public class FabriqueEpoque1 implements FabriqueEpoque {
 
+    final int munitionInitLeger = 12;
     public Bateau creerBateau1 () {
         return new Bateau(1, 5, Arme.LEGER);
     }

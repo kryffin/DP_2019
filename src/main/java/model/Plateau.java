@@ -1,8 +1,8 @@
 package main.java.model;
 
-import javax.swing.text.Position;
+
 import java.util.ArrayList;
-import java.util.Map;
+
 
 public class Plateau {
 
