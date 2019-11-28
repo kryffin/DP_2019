@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Epoque1 extends Epoque {
-
+    /**
+     * constructeur
+     */
     public Epoque1(){
         super();
         setLeger();
@@ -17,6 +19,14 @@ public class Epoque1 extends Epoque {
         setAtomique();
     }
 
+    /**
+     * factorise le code, étant donné que la hashmap contient <Arme, List<Object>>
+     * ici on "creer" les attributs des armes
+     * @param degat : dégats de l'arme
+     * @param munition : munitions de l'arme
+     * @param pattern : patterne de l'arme
+     * @return : une liste <degat,munition,pattern> représentant l'arme
+     */
     @Override
      List<Object> setArme(int degat, int munition, Position[] pattern) {
         List<Object> carac = new ArrayList<>();
