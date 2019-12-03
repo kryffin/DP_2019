@@ -1,5 +1,7 @@
 package main.java.controller;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import main.java.model.Jeu;
 import main.java.model.Position;
 
@@ -17,5 +19,21 @@ public class Controller {
     public void chooseWeapon(Position position){
         jeu.chooseWeapon(position);
 
+    }
+
+    /**
+     * les différents boutons du plateaux sont liés à cette fonction
+     * @param actionEvent
+     */
+    public void fireEvent(ActionEvent actionEvent) {
+        Button b = (Button) actionEvent.getSource();
+        int tmp = Integer.parseInt(b.getText());
+
+        int col = tmp%10;
+        int row = (tmp - col)/10;
+        System.out.println("col:"+col);
+        System.out.println("row:"+row);
+        System.out.println("====");
+        //System.out.println(b.getText());
     }
 }

@@ -26,7 +26,8 @@ public class Jeu {
     public Jeu () {
         Scanner sc = new Scanner(System.in);
         System.out.println("Début du jeu, choisir époque (0/1): ");
-        choixEpoque(sc.nextInt());
+        //choixEpoque(sc.nextInt());
+        choixEpoque(1);
         System.out.println("époque choisie : " + epoque);
         creerFlotte();
         System.out.println("FLotte créée");
