@@ -3,7 +3,7 @@ package main.java.controller;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import main.java.model.Jeu;
-import main.java.model.Plateau;
+import main.java.model.plateau.Plateau;
 import main.java.model.Position;
 
 public class Controller {

@@ -1,4 +1,8 @@
-package main.java.model;
+package main.java.model.plateau;
+
+import main.java.model.Position;
+import main.java.model.plateau.bateau.Arme;
+import main.java.model.plateau.bateau.Bateau;
 
 import java.util.*;
 import java.util.List;

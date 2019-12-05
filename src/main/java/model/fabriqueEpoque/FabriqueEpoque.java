@@ -1,6 +1,6 @@
 package main.java.model.fabriqueEpoque;
 
-import main.java.model.Bateau;
+import main.java.model.plateau.bateau.Bateau;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.model.joueur;
 
 import main.java.model.strategy.Aleatoire;
 import main.java.model.strategy.IA;

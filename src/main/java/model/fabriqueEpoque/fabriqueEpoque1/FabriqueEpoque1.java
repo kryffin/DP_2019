@@ -1,8 +1,8 @@
 package main.java.model.fabriqueEpoque.fabriqueEpoque1;
 
-import main.java.model.Arme;
+import main.java.model.plateau.bateau.Arme;
 
-import main.java.model.Bateau;
+import main.java.model.plateau.bateau.Bateau;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 
 import java.util.ArrayList;

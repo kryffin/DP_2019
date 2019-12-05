@@ -3,20 +3,13 @@ package main.java.view;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import main.java.controller.Controller;
-import main.java.model.Bateau;
-import main.java.model.Plateau;
+import main.java.model.plateau.bateau.Bateau;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlacementView {
