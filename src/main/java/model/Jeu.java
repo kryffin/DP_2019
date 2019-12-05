@@ -53,7 +53,7 @@ public class Jeu {
     }
 
     public void shoot(Tir tir){
-        Position target = tir.getPosition();
+        Position target = tir.getCible();
         Position[] patterns = epoque.getPattern(tir.getArme());
         int degat = epoque.getDegat(tir.getArme());
         for(Position p : patterns){
