@@ -76,6 +76,10 @@ public class Bateau {
         return compartiments.containsKey(p);
     }
 
+    public Compartiment getCompartiment(Position position) {
+        return compartiments.get(position);
+    }
+
     boolean isDead() {
         int pv = 0;
 

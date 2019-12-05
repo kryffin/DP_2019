@@ -29,4 +29,14 @@ public class Compartiment {
     public String toString() {
         return "Compartiment<" + pv + "," + munitionActuel + "," + arme + ">";
     }
+
+
+    public void decreaseHP(int degat){
+        int newpv = pv - degat;
+        if(newpv < 0){
+            pv = 0 ;
+        }else{
+            pv = newpv;
+        }
+    }
 }

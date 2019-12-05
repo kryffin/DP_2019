@@ -1,5 +1,6 @@
 package main.java.model;
 
+import javafx.geometry.Pos;
 import main.java.model.etat.Epoque;
 import main.java.model.etat.Epoque1;
 import main.java.model.etat.Epoque2;
@@ -12,7 +13,7 @@ import java.util.List;
 
 
 public class Jeu {
-
+    private Plateau plateauAcutel ;
     private Plateau plateau1;
     private Plateau plateau2;
     private Joueurs joueur1;
@@ -42,21 +43,33 @@ public class Jeu {
         return arme;
     }
 
-    public void chooseWeapon(Position position) {
-        Arme arme;
-        if (myTurn) {
-            arme = this.plateau1.getArme(position);
-        } else {
-            arme = this.plateau2.getArme(position);
-        }
+    public Arme chooseWeapon(Position position) {
+     return  plateau1.getArme(position);
 
-        if(arme!=null){
-            chooseTarget();
-        }
     }
 
     public void chooseTarget(){
 
+    }
+
+    public void shoot(Tir tir){
+        Position target = tir.getPosition();
+        Position[] patterns = epoque.getPattern(tir.getArme());
+        int degat = epoque.getDegat(tir.getArme());
+        for(Position p : patterns){
+            Position newPosition = calculerPosition(target,p);
+            for(Bateau b : plateau2.getBateaux()){
+                if(b.hasCompartiment(newPosition)){
+                    b.getCompartiment(newPosition).decreaseHP(degat);
+                }
+            }
+        }
+    }
+
+    public Position calculerPosition(Position posTarget, Position pattern){
+        int x = posTarget.getX() + pattern.getX();
+        int y = posTarget.getY() + pattern.getY();
+        return new Position(x,y);
     }
 
     /**
