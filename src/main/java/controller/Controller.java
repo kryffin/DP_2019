@@ -5,20 +5,25 @@ import javafx.scene.control.Button;
 import main.java.model.Jeu;
 import main.java.model.Position;
 
-import java.awt.event.*;
 public class Controller {
+
     private Jeu jeu ;
 
-    public void Controller(Jeu j){
+    public Controller(Jeu j){
         jeu = j ;
     }
 
     public void createShip(int taille, int version){
        // jeu.createShip(taille,version);
     }
+
     public void chooseWeapon(Position position){
         jeu.chooseWeapon(position);
 
+    }
+
+    public void chooseEpoque (int e) {
+        jeu.choixEpoque(e);
     }
 
     /**

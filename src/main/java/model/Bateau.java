@@ -5,6 +5,7 @@ import main.java.model.etat.Epoque;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -35,11 +36,32 @@ public class Bateau {
 
     public Bateau(int taille, int pv, Arme... armes) {
         compartiments = new HashMap<>();
-        int x = 0;
         for (int i = 0; i < taille; i++) {
-            compartiments.put(new Position(x, 0), new Compartiment(pv, armes[i]));
-            x++;
+            compartiments.put(new Position(i, 0), new Compartiment(pv, armes[i]));
             //todo recuperer les munitions actuels en fonction de l'arme et demander à l'époque
+        }
+    }
+
+    /**
+     * Déplacement d'un bateau, on met les compartiments l'un à coté de l'autre vers la droite à partir de x,y
+     * @param x coordinée x
+     * @param y coordinée y
+     */
+    public void setPosition (int x, int y) {
+        //suppression et sauvegarde des compartiments
+        List<Compartiment> comps = new ArrayList<>();
+        int size = compartiments.size();
+        for (int i = 0; i < size; i++) {
+            Compartiment c = compartiments.get(new Position(i, 0));
+            comps.add(c);
+            System.out.println(c);
+        }
+
+        compartiments = new HashMap<>();
+
+        //replacement des compartiments dans leurs emplacement
+        for (int i = 0; i < size; i++) {
+            compartiments.put(new Position(x + i, y), comps.get(i));
         }
     }
 
@@ -81,9 +103,9 @@ public class Bateau {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Bateau<");
+        sb.append("Bateau" + compartiments.size() + "<");
         for (Position p : compartiments.keySet()) {
-            sb.append(compartiments.get(p).toString() + ",");
+            sb.append(p + ":" + compartiments.get(p).toString() + ",");
         }
         sb.append(">");
         return sb.toString();

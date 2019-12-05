@@ -1,51 +1,29 @@
 package main.java.model;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import main.java.controller.Controller;
-import main.java.view.View;
-
-import java.net.URL;
+import main.java.view.ViewManager;
 
 public class Model extends Application {
+
+    private static ViewManager vm;
+
     public static void main(String[] argv){
-
         Jeu jeu = new Jeu();
-     
+        Controller controller = new Controller(jeu);
+        vm = new ViewManager(controller);
+        jeu.setViewManager(vm); //liaison
         launch(argv);
-
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-
-        try {
-
-
-            System.out.printf(getClass().getResource("./../view/").toString());
-            Parent root = FXMLLoader.load(getClass().getResource("../view/mainView.fxml"));
-            primaryStage.setTitle("SEA TO SEA");
-            Scene scene = new Scene(root, 800,600);
-            primaryStage.setScene(scene);
-
-            /*build du controleur la vue le connait*/
-            Controller controller = new Controller();
-
-            /*build de la vue elle connait le controlleur */
-            View view = new View(controller);
-
-            /* init bouttons */
-            view.initialize(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-
+    public void start (Stage primaryStage) {
+        primaryStage.setResizable(false);
+        vm.setStage(primaryStage); //lie le stage au manager
+        vm.initEpoqueView(); //initialise la vue du choix d'époque
+        vm.initPlacementView(); //initialise la vue du placement des bateaux
+        vm.displayEpoqueView(); //affiche la vue du choix d'époque
     }
+
 }

@@ -1,9 +1,7 @@
 package main.java.model;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.List;
-import java.util.Map;
 
 public class Plateau {
 
@@ -13,8 +11,24 @@ public class Plateau {
         bateaux = new ArrayList<>();
     }
 
+    public void placement () {
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < bateaux.size(); i++) {
+            System.out.println("Placement du bateau " + i);
+            System.out.println("Choisissez la coordonnée x :");
+            int x = sc.nextInt();
+            System.out.println("Choisissez la coordonnée y :");
+            int y = sc.nextInt();
+            bateaux.get(i).setPosition(x, y);
+        }
+    }
+
     public void setBateaux(List<Bateau> bateaux) {
         this.bateaux = bateaux;
+    }
+
+    public List<Bateau> getBateaux() {
+        return bateaux;
     }
 
     public Arme getArme(Position position){

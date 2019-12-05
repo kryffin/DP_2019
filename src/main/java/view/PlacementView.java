@@ -11,17 +11,21 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import main.java.controller.Controller;
+import main.java.model.Bateau;
+import main.java.model.Plateau;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class View  extends GridPane {
+public class PlacementView extends GridPane {
     private Controller controller;
     @FXML
     private GridPane rightPane;
+    @FXML
+    private GridPane leftPane;
 
-    public View (Controller controller){
+    public PlacementView(Controller controller){
         this.controller = controller;
     }
 
@@ -29,6 +33,7 @@ public class View  extends GridPane {
     public void initialize(Scene scene){
         int i = 0;
         rightPane = (GridPane) scene.lookup("#gridPane");
+        leftPane = (GridPane) scene.lookup("#flottePane");
 
         for(int w = 0; w<10; w++){
             for(int h = 0; h<10; h++){
@@ -45,7 +50,6 @@ public class View  extends GridPane {
                 btt.setText(id);
                 btt.setId(id);
                 rightPane.add(btt, w,h);
-
             }
         }
 

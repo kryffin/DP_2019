@@ -6,9 +6,9 @@ import main.java.model.etat.Epoque2;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 import main.java.model.fabriqueEpoque.fabriqueEpoque1.FabriqueEpoque1;
 import main.java.model.fabriqueEpoque.fabriqueEpoque2.FabriqueEpoque2;
+import main.java.view.ViewManager;
 
 import java.util.List;
-import java.util.Scanner;
 
 
 public class Jeu {
@@ -19,19 +19,13 @@ public class Jeu {
     private Joueurs joueur2;
     private Epoque epoque;
     private FabriqueEpoque fabriqueEpoque;
+    private ViewManager viewManager;
 
     private boolean myTurn;
     private boolean finished;
 
-    public Jeu () {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Début du jeu, choisir époque (0/1): ");
-        //choixEpoque(sc.nextInt());
-        choixEpoque(1);
-        System.out.println("époque choisie : " + epoque);
-        creerFlotte();
-        System.out.println("FLotte créée");
-        System.out.println(plateau1);
+    public void setViewManager (ViewManager vm) {
+        this.viewManager = vm;
     }
 
     // myTurn a true : c'est le tour du joueur1 (humain)
@@ -77,6 +71,10 @@ public class Jeu {
             epoque = new Epoque2();
             fabriqueEpoque = new FabriqueEpoque2();
         }
+        System.out.println("Epoque choisie : " + epoque);
+        creerFlotte();
+        System.out.println("Flotte créée");
+        viewManager.displayPlacementView();
     }
 
     public void creerFlotte () {
