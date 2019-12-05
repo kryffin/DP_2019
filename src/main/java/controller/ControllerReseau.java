@@ -14,12 +14,18 @@ public class ControllerReseau extends UnicastRemoteObject implements Server {
     }
 
     @Override
-    public EtatTir envoyerTir(Tir tir) throws RemoteException {
+    public void choixEpoque(int choix) throws RemoteException {
+        return;
+    }
+
+    @Override
+    public EtatTir[] envoyerTir(Tir tir) throws RemoteException {
         return null;
     }
 
     @Override
-    public void choixEpoque(int choix) throws RemoteException {
-        return;
+    public EtatTir[] recevoirTir(Tir tir) throws RemoteException {
+        return null;
     }
+
 }
