@@ -3,7 +3,7 @@ package main.java.model;
 public enum EtatTir {
 
     TOUCHE,
-    COULE,
+    LOUPE,
     TOUCHE_COULE;
 
 }

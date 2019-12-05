@@ -17,7 +17,6 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public class Jeu {
-    private Plateau plateauAcutel ;
     private Plateau plateau1;
     private Plateau plateau2;
     private Joueur joueur1;
@@ -30,6 +29,12 @@ public class Jeu {
 
     private boolean myTurn;
     private boolean finished;
+    private enum etatTir {
+        TOUCHER,
+        PLOUF,
+        TOUCHERCOULER
+    };
+
 
     public void setViewManager (ViewManager vm) {
         this.viewManager = vm;
@@ -63,18 +68,28 @@ public class Jeu {
 
     }
 
-    public void shoot(Tir tir){
+    public EtatTir[] shoot(Tir tir){
         Position target = tir.getCible();
         Position[] patterns = epoque.getPattern(tir.getArme());
+        EtatTir[] etat = new EtatTir[patterns.length];
         int degat = epoque.getDegat(tir.getArme());
+        int cpt = 0;
         for(Position p : patterns){
+            etat[cpt] = EtatTir.LOUPE;
             Position newPosition = calculerPosition(target,p);
-            for(Bateau b : plateau2.getBateaux()){
+            for(Bateau b : plateau1.getBateaux()){
                 if(b.hasCompartiment(newPosition)){
                     b.getCompartiment(newPosition).decreaseHP(degat);
+                    if(b.isDead()){
+                        etat[cpt]=EtatTir.TOUCHE_COULE;
+                    }else{
+                        etat[cpt]= EtatTir.TOUCHE;
+                    }
                 }
             }
+            cpt++;
         }
+        return etat;
     }
 
     public Position calculerPosition(Position posTarget, Position pattern){
