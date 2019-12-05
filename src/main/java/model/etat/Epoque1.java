@@ -1,9 +1,8 @@
 package main.java.model.etat;
 
-import main.java.model.Arme;
+import main.java.model.plateau.bateau.Arme;
 import main.java.model.Position;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

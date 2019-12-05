@@ -1,12 +1,15 @@
 package main.java.model;
 
-import javafx.geometry.Pos;
+import main.java.model.joueur.Joueur;
+import main.java.model.plateau.bateau.Bateau;
 import main.java.model.etat.Epoque;
 import main.java.model.etat.Epoque1;
 import main.java.model.etat.Epoque2;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 import main.java.model.fabriqueEpoque.fabriqueEpoque1.FabriqueEpoque1;
 import main.java.model.fabriqueEpoque.fabriqueEpoque2.FabriqueEpoque2;
+import main.java.model.plateau.bateau.Arme;
+import main.java.model.plateau.Plateau;
 import main.java.view.ViewManager;
 
 import java.util.List;
@@ -16,8 +19,8 @@ public class Jeu {
     private Plateau plateauAcutel ;
     private Plateau plateau1;
     private Plateau plateau2;
-    private Joueurs joueur1;
-    private Joueurs joueur2;
+    private Joueur joueur1;
+    private Joueur joueur2;
     private Epoque epoque;
     private FabriqueEpoque fabriqueEpoque;
     private ViewManager viewManager;
@@ -48,7 +51,7 @@ public class Jeu {
 
     }
 
-    public void chooseTarget(){
+    public void chooseTarget(Position position){
 
     }
 

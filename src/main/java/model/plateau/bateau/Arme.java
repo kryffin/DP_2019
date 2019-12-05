@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.model.plateau.bateau;
 
 public enum Arme {
 

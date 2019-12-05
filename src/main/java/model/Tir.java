@@ -1,5 +1,7 @@
 package main.java.model;
 
+import main.java.model.plateau.bateau.Arme;
+
 /**
  * Classe représentant un tir, sera utilisé pour envoyer l'information du choix de notre tir au joueur adverse
  */

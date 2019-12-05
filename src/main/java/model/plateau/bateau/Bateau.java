@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.model.plateau.bateau;
 
 import main.java.model.Position;
 import main.java.model.etat.Epoque;
