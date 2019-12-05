@@ -103,4 +103,8 @@ public class Jeu {
         plateau1.setBateaux(bateaux);
     }
 
+    public Plateau getPlateau () {
+        return plateau1;
+    }
+
 }
