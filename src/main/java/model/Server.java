@@ -5,7 +5,8 @@ import java.rmi.RemoteException;
 
 public interface Server extends Remote {
 
-    EtatTir envoyerTir (Tir tir) throws RemoteException;
     void choixEpoque (int choix) throws RemoteException;
+    EtatTir[] envoyerTir (Tir tir) throws RemoteException;
+    EtatTir[] recevoirTir (Tir tir) throws RemoteException;
 
 }
