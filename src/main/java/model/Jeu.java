@@ -1,5 +1,6 @@
 package main.java.model;
 
+import main.java.controller.ControllerReseau;
 import main.java.model.joueur.Humain;
 import main.java.model.joueur.Joueur;
 import main.java.model.plateau.PlateauInfo;
@@ -10,10 +11,9 @@ import main.java.model.etat.Epoque2;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 import main.java.model.fabriqueEpoque.fabriqueEpoque1.FabriqueEpoque1;
 import main.java.model.fabriqueEpoque.fabriqueEpoque2.FabriqueEpoque2;
-import main.java.model.joueur.Joueur;
 import main.java.model.plateau.Plateau;
 import main.java.model.plateau.bateau.Arme;
-import main.java.model.plateau.bateau.Bateau;
+
 import main.java.view.ViewManager;
 
 import java.rmi.RemoteException;

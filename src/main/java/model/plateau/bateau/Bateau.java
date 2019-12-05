@@ -80,7 +80,7 @@ public class Bateau {
         return compartiments.get(position);
     }
 
-    boolean isDead() {
+    public boolean isDead() {
         int pv = 0;
 
         for (Compartiment c : compartiments.values()) {
