@@ -22,7 +22,6 @@ public class Model extends Application {
         primaryStage.setResizable(false);
         vm.setStage(primaryStage); //lie le stage au manager
         vm.initEpoqueView(); //initialise la vue du choix d'époque
-        vm.initPlacementView(); //initialise la vue du placement des bateaux
         vm.displayEpoqueView(); //affiche la vue du choix d'époque
     }
 

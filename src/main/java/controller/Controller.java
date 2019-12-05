@@ -3,6 +3,7 @@ package main.java.controller;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import main.java.model.Jeu;
+import main.java.model.Plateau;
 import main.java.model.Position;
 
 public class Controller {
@@ -11,6 +12,10 @@ public class Controller {
 
     public Controller(Jeu j){
         jeu = j ;
+    }
+
+    public Plateau getPlateau () {
+        return jeu.getPlateau();
     }
 
     public void createShip(int taille, int version){

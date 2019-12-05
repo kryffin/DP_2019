@@ -61,6 +61,8 @@ public class ViewManager {
      * Affiche la vue du placement des bateaux
      */
     public void displayPlacementView () {
+        initPlacementView(); //initialise la vue du placement des bateaux
+
         stage.setTitle("SEA TO SEA - placement");
         stage.setScene(placementScene);
         stage.show();
