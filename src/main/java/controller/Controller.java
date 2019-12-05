@@ -70,7 +70,7 @@ public class Controller {
         //todo tirer a la position avec l'arme sauvegarder au préalable
         Position position = new Position(col, row);
 
-//        jeu.tirer(position);
+        jeu.chooseTarget(position);
 
     }
 }
