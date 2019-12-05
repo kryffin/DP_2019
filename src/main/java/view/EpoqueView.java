@@ -12,7 +12,7 @@ import main.java.controller.Controller;
  * Cette vue sert à faire le choix entre les 2 différentes époques
  * @author Nicolas Kleinhentz
  */
-public class EpoqueView {
+public class  EpoqueView {
 
     /**
      * controller à lier pour manipuler le modèle

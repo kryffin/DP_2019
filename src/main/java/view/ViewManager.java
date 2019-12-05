@@ -33,6 +33,10 @@ public class ViewManager {
     private Scene placementScene;
 
     /**
+     * scene pour le l'affichage du jeu
+     */
+    private Scene plateauScene;
+    /**
      * Constructeur de liaison du controlleur
      * @param controller controlleur à lier
      */
@@ -69,6 +73,14 @@ public class ViewManager {
     }
 
     /**
+     * Affiche la vu des plateaux de jeu
+     */
+    public void displayPlateauView(){
+        stage.setTitle("SEA TO SEA - plateau");
+        stage.setScene(plateauScene);
+        stage.show();
+    }
+    /**
      * Initialise la vue du choix de l'époque
      */
     public void initEpoqueView () {
@@ -104,4 +116,22 @@ public class ViewManager {
         }
     }
 
+    /**
+     * Initialise la vue des plateaux de jeu
+     */
+
+    public void initPlateauView(){
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("../view/plateauView.fxml"));
+            placementScene = new Scene(root, 800,600);
+
+            /*build de la vue elle connait le controlleur */
+            PlateauView plateauView = new PlateauView(controller);
+
+            /* init bouttons */
+            plateauView.initialize(placementScene);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

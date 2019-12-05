@@ -22,7 +22,18 @@ public class Controller {
        // jeu.createShip(taille,version);
     }
 
-    public void chooseWeapon(Position position){
+
+    public void chooseWeapon(ActionEvent e){
+        //de action event e on en tire le bouton qui a une position
+        Button b = (Button) e.getSource();
+        String name = b.getId().substring(1);
+        int tmp = Integer.parseInt(name);
+
+        int col = tmp%10;
+        int row = (tmp - col)/10;
+
+        //todo verifier si c'est col/row ou row/col
+        Position position = new Position(col, row);
         jeu.chooseWeapon(position);
 
     }
@@ -45,5 +56,21 @@ public class Controller {
         System.out.println("row:"+row);
         System.out.println("====");
         //System.out.println(b.getText());
+    }
+
+    public void tirer(ActionEvent e) {
+        //de action event e on en tire le bouton qui a une position
+        Button b = (Button) e.getSource();
+        String name = b.getId().substring(1);
+        int tmp = Integer.parseInt(name);
+
+        int col = tmp%10;
+        int row = (tmp - col)/10;
+
+        //todo tirer a la position avec l'arme sauvegarder au préalable
+        Position position = new Position(col, row);
+
+//        jeu.tirer(position);
+
     }
 }
