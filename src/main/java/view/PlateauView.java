@@ -18,7 +18,6 @@ public class PlateauView extends AnchorPane {
 
     public PlateauView(Controller c){
         this.controller = c;
-
     }
 
     @FXML
@@ -26,9 +25,6 @@ public class PlateauView extends AnchorPane {
         int i = 0;
         rightPane = (GridPane) scene.lookup("#adversaire");
         leftPane = (GridPane) scene.lookup("#joueur");
-
-        System.out.println(leftPane.getId());
-        System.out.println(rightPane.getId());
 
         for(int w = 0; w<10; w++){
             for(int h = 0; h<10; h++){
@@ -46,12 +42,7 @@ public class PlateauView extends AnchorPane {
                 String id = "J"+((h*10)+w);
                 bttJoueur.setText(id);
                 bttJoueur.setId(id);
-                //System.out.println(bttJoueur);
-                int before = leftPane.getChildren().size();
-                System.out.println(before);
                 leftPane.add(bttJoueur, w,h);
-                System.out.println(leftPane.getChildren().size());
-                assert (leftPane.getChildren().size() == before +1);
                 //=====================================
 
                 //======boutons plateau adversaire============
@@ -71,7 +62,7 @@ public class PlateauView extends AnchorPane {
                 rightPane.add(bttJoueur, w,h);
             }
         }
-        System.out.println("end");
-        System.out.println(leftPane.getChildren());
+
+        System.out.println(leftPane.getChildren().size());
     }
 }

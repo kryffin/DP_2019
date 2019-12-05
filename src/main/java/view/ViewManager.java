@@ -25,7 +25,7 @@ public class ViewManager {
     /**
      * scène pour le choix de l'époque
      */
-    private Scene epoqueScene;
+    private Scene epoqueScene = null;
 
     /**
      * scène pour le placement des bateaux
@@ -56,6 +56,10 @@ public class ViewManager {
      * Affiche la vue du choix de l'époque
      */
     public void displayEpoqueView () {
+        if (epoqueScene == null) {
+            initEpoqueView(); //initialise la vue du choix de l'époque si elle est null
+        }
+
         stage.setTitle("SEA TO SEA - choix de l'époque");
         stage.setScene(epoqueScene);
         stage.show();
@@ -65,7 +69,9 @@ public class ViewManager {
      * Affiche la vue du placement des bateaux
      */
     public void displayPlacementView () {
-        initPlacementView(); //initialise la vue du placement des bateaux
+        if (placementScene == null) {
+            initPlacementView(); //initialise la vue du placement des bateaux si elle est null
+        }
 
         stage.setTitle("SEA TO SEA - placement");
         stage.setScene(placementScene);
@@ -76,6 +82,10 @@ public class ViewManager {
      * Affiche la vu des plateaux de jeu
      */
     public void displayPlateauView(){
+        if (plateauScene == null) {
+            initPlateauView(); //initialise la vue du placement des bateaux si elle est null
+        }
+
         stage.setTitle("SEA TO SEA - plateau");
         stage.setScene(plateauScene);
         stage.show();

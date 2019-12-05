@@ -21,7 +21,6 @@ public class Model extends Application {
     public void start (Stage primaryStage) {
         primaryStage.setResizable(false);
         vm.setStage(primaryStage); //lie le stage au manager
-        vm.initEpoqueView(); //initialise la vue du choix d'époque
         vm.displayEpoqueView(); //affiche la vue du choix d'époque
     }
 
