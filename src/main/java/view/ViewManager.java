@@ -133,13 +133,13 @@ public class ViewManager {
     public void initPlateauView(){
         try{
             Parent root = FXMLLoader.load(getClass().getResource("../view/plateauView.fxml"));
-            placementScene = new Scene(root, 800,600);
+            plateauScene = new Scene(root, 800,600);
 
             /*build de la vue elle connait le controlleur */
             PlateauView plateauView = new PlateauView(controller);
 
             /* init bouttons */
-            plateauView.initialize(placementScene);
+            plateauView.initialize(plateauScene);
         } catch (Exception e){
             e.printStackTrace();
         }

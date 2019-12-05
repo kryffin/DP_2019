@@ -19,7 +19,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlacementView extends GridPane {
+public class PlacementView {
     private Controller controller;
 
     @FXML
