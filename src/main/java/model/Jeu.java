@@ -1,6 +1,8 @@
 package main.java.model;
 
+import main.java.model.joueur.Humain;
 import main.java.model.joueur.Joueur;
+import main.java.model.plateau.PlateauInfo;
 import main.java.model.plateau.bateau.Bateau;
 import main.java.model.etat.Epoque;
 import main.java.model.etat.Epoque1;
@@ -16,11 +18,10 @@ import java.util.List;
 
 
 public class Jeu {
-    private Plateau plateauAcutel ;
+
     private Plateau plateau1;
-    private Plateau plateau2;
-    private Joueur joueur1;
-    private Joueur joueur2;
+    private PlateauInfo plateau2;
+    private Joueur joueur;
     private Epoque epoque;
     private FabriqueEpoque fabriqueEpoque;
     private ViewManager viewManager;
@@ -28,6 +29,14 @@ public class Jeu {
     private boolean myTurn;
     private boolean finished;
 
+    public Jeu(){
+        plateau1 = new Plateau();
+        plateau2 = new PlateauInfo();
+        joueur = new Humain();
+        myTurn = true;
+        finished = false;
+
+    }
     public void setViewManager (ViewManager vm) {
         this.viewManager = vm;
     }
@@ -37,12 +46,7 @@ public class Jeu {
     public Arme getArme(Position position){
 
         Arme arme;
-        if (myTurn){
-            arme = this.plateau1.getArme(position);
-        }else{
-            arme = this.plateau2.getArme(position);
-        }
-
+        arme = this.plateau1.getArme(position);
         return arme;
     }
 
@@ -61,7 +65,7 @@ public class Jeu {
         int degat = epoque.getDegat(tir.getArme());
         for(Position p : patterns){
             Position newPosition = calculerPosition(target,p);
-            for(Bateau b : plateau2.getBateaux()){
+            for(Bateau b : plateau1.getBateaux()){
                 if(b.hasCompartiment(newPosition)){
                     b.getCompartiment(newPosition).decreaseHP(degat);
                 }
