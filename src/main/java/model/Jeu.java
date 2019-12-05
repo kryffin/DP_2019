@@ -1,19 +1,20 @@
 package main.java.model;
 
-import main.java.model.joueur.Joueur;
-import main.java.model.plateau.bateau.Bateau;
+import main.java.controller.ControllerReseau;
 import main.java.model.etat.Epoque;
 import main.java.model.etat.Epoque1;
 import main.java.model.etat.Epoque2;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 import main.java.model.fabriqueEpoque.fabriqueEpoque1.FabriqueEpoque1;
 import main.java.model.fabriqueEpoque.fabriqueEpoque2.FabriqueEpoque2;
-import main.java.model.plateau.bateau.Arme;
+import main.java.model.joueur.Joueur;
 import main.java.model.plateau.Plateau;
+import main.java.model.plateau.bateau.Arme;
+import main.java.model.plateau.bateau.Bateau;
 import main.java.view.ViewManager;
 
+import java.rmi.RemoteException;
 import java.util.List;
-
 
 public class Jeu {
     private Plateau plateauAcutel ;
@@ -25,11 +26,18 @@ public class Jeu {
     private FabriqueEpoque fabriqueEpoque;
     private ViewManager viewManager;
 
+    private ControllerReseau cr;
+
     private boolean myTurn;
     private boolean finished;
 
     public void setViewManager (ViewManager vm) {
         this.viewManager = vm;
+        try {
+            cr = new ControllerReseau();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     // myTurn a true : c'est le tour du joueur1 (humain)
