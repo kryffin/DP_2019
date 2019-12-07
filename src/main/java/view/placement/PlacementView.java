@@ -80,8 +80,8 @@ public class PlacementView {
                 @Override
                 public void handle(ActionEvent event) {
                     int taille = b.getNbCompartiement();
-                    initPopUp();
-                    popUp.setTaille(taille);
+                    initPopUp(taille);
+
 
                     popUpStage.setTitle("Details bateau taille "+taille);
                     popUpStage.setScene(popUpScene);
@@ -96,7 +96,7 @@ public class PlacementView {
 
 
     }
-    public void initPopUp () {
+    public void initPopUp (int taille) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("popUp.fxml"));
             popUpScene = new Scene(root, 800,600);
@@ -105,7 +105,8 @@ public class PlacementView {
             /*build de la vue elle connait le controlleur */
              popUp = new PopUp(controller);
 
-            /* init bouttons */
+             popUp.setTaille(taille);
+
             popUp.initialize(popUpScene);
         } catch (Exception e){
             e.printStackTrace();

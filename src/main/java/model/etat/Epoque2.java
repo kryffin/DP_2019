@@ -10,10 +10,7 @@ public class Epoque2 extends Epoque {
 
     public Epoque2(){
         super();
-        setLeger();
-        setMedium();
-        setLourde();
-        setAtomique();
+
     }
 
     @Override

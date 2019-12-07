@@ -24,6 +24,11 @@ public abstract class Epoque {
     public Epoque(){
         caracteristiqueArme = new HashMap<>();
         caracteristiquePV = new HashMap<>();
+        setLeger();
+        setMedium();
+        setLourde();
+        setAtomique();
+        setBateau();
     }
 
     public void put(Arme a, List<Object> l){
@@ -63,4 +68,11 @@ public abstract class Epoque {
     abstract void setAtomique();
 
     abstract void setBateau();
+
+    public List<List<Object>> getDescription(int taille) {
+        List<List<Object>> res = this.caracteristiquePV.get(taille);
+        System.out.println("DEMANDE DE TAILLE "+ taille);
+        assert(res != null):"BUG EPOQUE";
+        return res;
+    }
 }

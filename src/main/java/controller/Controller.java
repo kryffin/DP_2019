@@ -6,6 +6,8 @@ import main.java.model.Jeu;
 import main.java.model.plateau.Plateau;
 import main.java.model.Position;
 
+import java.util.List;
+
 public class Controller {
 
     private Jeu jeu ;
@@ -19,7 +21,7 @@ public class Controller {
     }
 
     public void createShip(int taille, int version){
-       // jeu.createShip(taille,version);
+        jeu.createShip(taille,version);
     }
 
 
@@ -77,5 +79,9 @@ public class Controller {
     public void placerShip(ActionEvent event) {
 
 
+    }
+
+    public List<List<Object>> getDescription(int taille) {
+        return jeu.getDescription(taille);
     }
 }

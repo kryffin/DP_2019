@@ -12,10 +12,8 @@ public class Epoque1 extends Epoque {
      */
     public Epoque1(){
         super();
-        setLeger();
-        setMedium();
-        setLourde();
-        setAtomique();
+
+
     }
 
     /**
@@ -189,6 +187,19 @@ public class Epoque1 extends Epoque {
         res.add(tmp);
         caracteristiquePV.put(4, res);
 
+/*
+        System.out.println("====+DEBUG+======");
+        for(Integer i : caracteristiquePV.keySet()){
+            System.out.println("TAILLE "+i);
+            for(List l: caracteristiquePV.get(i)){
+                System.out.println("bateau :");
+                for(Object o : l){
+                    System.out.println(o);
+                }
+            }
+        }
+
+ */
     }
 
 

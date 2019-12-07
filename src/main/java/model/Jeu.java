@@ -135,4 +135,12 @@ public class Jeu {
         return plateau1;
     }
 
+    public List<List<Object>> getDescription(int taille) {
+        return epoque.getDescription(taille);
+    }
+
+    //todo
+    public void createShip(int taille, int version) {
+        System.out.println("JE CREER UN BATEAU DE TAILLE" + taille + " A LA VERSION " + version);
+    }
 }
