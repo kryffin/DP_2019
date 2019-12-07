@@ -76,11 +76,14 @@ public class PlacementView {
         int i = 0;
         for (Bateau b : bateaux) {
             buttons[i] = new Button(b.toString());
+            int finalI = i;
             buttons[i].setOnAction(new EventHandler<ActionEvent>() {
+
+
                 @Override
                 public void handle(ActionEvent event) {
                     int taille = b.getNbCompartiement();
-                    initPopUp(taille);
+                    initPopUp(taille, finalI);
 
 
                     popUpStage.setTitle("Details bateau taille "+taille);
@@ -96,7 +99,7 @@ public class PlacementView {
 
 
     }
-    public void initPopUp (int taille) {
+    public void initPopUp (int taille, int posList) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("popUp.fxml"));
             popUpScene = new Scene(root, 800,600);
@@ -106,7 +109,7 @@ public class PlacementView {
              popUp = new PopUp(controller);
 
              popUp.setTaille(taille);
-
+             popUp.setPosList(posList);
             popUp.initialize(popUpScene);
         } catch (Exception e){
             e.printStackTrace();

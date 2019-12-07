@@ -23,6 +23,7 @@ public class PopUp {
 
     private Controller controller;
     private int taille;
+    private int posList;
 
 
     public PopUp(Controller controller) {
@@ -52,7 +53,7 @@ public class PopUp {
             btn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    controller.createShip(taille, finalI);
+                    controller.createShip(taille, finalI, posList);
                 }
             });
             leftBox.getChildren().add(t);
@@ -65,5 +66,9 @@ public class PopUp {
 
     public void setTaille(int taille) {
         this.taille = taille;
+    }
+
+    public void setPosList(int posList) {
+        this.posList = posList;
     }
 }

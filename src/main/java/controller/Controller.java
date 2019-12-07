@@ -20,8 +20,8 @@ public class Controller {
         return jeu.getPlateau();
     }
 
-    public void createShip(int taille, int version){
-        jeu.createShip(taille,version);
+    public void createShip(int taille, int version, int posList){
+        jeu.createShip(taille,version, posList);
     }
 
 

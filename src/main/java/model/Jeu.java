@@ -140,7 +140,16 @@ public class Jeu {
     }
 
     //todo
-    public void createShip(int taille, int version) {
+    public void createShip(int taille, int version, int posList) {
         System.out.println("JE CREER UN BATEAU DE TAILLE" + taille + " A LA VERSION " + version);
+        List<Bateau> b = plateau1.getBateaux();
+        Bateau aModif = b.get(posList);
+
+        b.set(posList,fabriqueEpoque.creerBateau(taille, version));
+
+        for(Bateau bat: b){
+            System.out.println(bat);
+        }
+
     }
 }

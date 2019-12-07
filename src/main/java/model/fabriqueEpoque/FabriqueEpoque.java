@@ -17,4 +17,7 @@ public interface FabriqueEpoque {
     Bateau creerBateau4V2 ();
     Bateau creerBateau4V3 ();
 
+    //todo creer un bateau en fonction de la taille et la version
+    Bateau creerBateau(int taille, int version);
+
 }

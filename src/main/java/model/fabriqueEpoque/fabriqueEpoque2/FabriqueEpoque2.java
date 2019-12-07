@@ -56,5 +56,43 @@ public class FabriqueEpoque2 implements FabriqueEpoque {
         return new Bateau(4, 60,Arme.LEGER, Arme.MOYENNE, Arme.MOYENNE, Arme.LEGER);
     }
 
+    //todo
+    @Override
+    public Bateau creerBateau(int taille, int version) {
+        switch (taille){
+            case 1:
+                return creerBateau1();
+            case 2:
+                if(version==0){
+                    return creerBateau2();
+                } else if (version==1){
+                    return creerBateau2V2();
+                }
+                break;
+            case 3:
+                if(version==0){
+                    return creerBateau3();
+                } else if (version==1){
+                    return creerBateau3V2();
+                } else if (version==2){
+                    return creerBateau3V3();
+                }
+                break;
+            case 4:
+                if(version==0){
+                    return creerBateau4();
+                } else if (version==1){
+                    return creerBateau4V2();
+                } else if (version==2){
+                    return creerBateau4V3();
+                }
+                break;
+
+            default:
+                return null;
+        }
+        return null;
+    }
+
 
 }
