@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import main.java.controller.Controller;
 import main.java.model.image.ImageManager;
 import main.java.model.plateau.bateau.Bateau;
@@ -23,7 +24,7 @@ public class PlacementView {
     private GridPane rightPane;
 
     @FXML
-    private GridPane leftPane;
+    private VBox leftPane;
 
     public PlacementView(Controller controller){
         this.controller = controller;
@@ -55,13 +56,13 @@ public class PlacementView {
         }
         rightPane.setGridLinesVisible(true);
 
-        leftPane = (GridPane) scene.lookup("#flottePane");
+        leftPane = (VBox) scene.lookup("#flottePane");
         List<Bateau> bateaux = controller.getPlateau().getBateaux();
         Button[] buttons = new Button[bateaux.size()];
         int i = 0;
         for (Bateau b : bateaux) {
             buttons[i] = new Button(b.toString());
-            leftPane.add(buttons[i], 1, i);
+            leftPane.getChildren().add(buttons[i]);
             i++;
         }
 

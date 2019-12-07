@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-
-<HBox fx:id="hboxEpoque" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="hboxEpoque" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="epoque1" mnemonicParsing="false" text="Button" />
-      <Button fx:id="epoque2" mnemonicParsing="false" text="Button" />
+      <Pane fx:id="paneE1" prefHeight="600.0" prefWidth="400.0">
+         <children>
+            <Button fx:id="epoque1" layoutX="174.0" layoutY="288.0" mnemonicParsing="false" text="Button" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneE2" prefHeight="600.0" prefWidth="400.0">
+         <children>
+            <Button fx:id="epoque2" layoutX="174.0" layoutY="288.0" mnemonicParsing="false" text="Button" />
+         </children>
+      </Pane>
    </children>
 </HBox>

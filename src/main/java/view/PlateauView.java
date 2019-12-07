@@ -35,7 +35,7 @@ public class PlateauView extends AnchorPane {
                 //======boutons du joueur============
                 Button bttJoueur = new Button();
                 bttJoueur.setPrefSize(40.0,40.0);
-                bttJoueur.setStyle("-fx-background-color: #0000FF; -fx-background-radius: 0");
+                bttJoueur.setStyle("-fx-background-color: transparent; -fx-background-radius: 0");
                 bttJoueur.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -43,7 +43,7 @@ public class PlateauView extends AnchorPane {
                     }
                 });
                 String id = "J"+((h*10)+w);
-                bttJoueur.setText(id);
+                //bttJoueur.setText(id);
                 bttJoueur.setId(id);
                 leftPane.add(bttJoueur, w,h);
                 //=====================================
@@ -52,7 +52,7 @@ public class PlateauView extends AnchorPane {
 
                 Button bttAdv = new Button();
                 bttAdv.setPrefSize(40.0,40.0);
-                bttAdv.setStyle("-fx-background-color: #0000F1; -fx-background-radius: 0");
+                bttAdv.setStyle("-fx-background-color: transparent; -fx-background-radius: 0");
                 bttAdv.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -60,7 +60,7 @@ public class PlateauView extends AnchorPane {
                     }
                 });
                 String id2 = "A"+((h*10)+w);
-                bttAdv.setText(id2);
+                //bttAdv.setText(id2);
                 bttAdv.setId(id2);
                 rightPane.add(bttAdv, w,h);
             }

@@ -40,7 +40,7 @@ public class  EpoqueView {
 
         //bouton de l'époque 1
         epoque1.setText("Epoque 1");
-        epoque1.setPrefSize(100.d, 100.d);
+        //epoque1.setPrefSize(100.d, 100.d);
         epoque1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -50,7 +50,7 @@ public class  EpoqueView {
 
         //bouton de l'époque 2
         epoque2.setText("Epoque 2");
-        epoque2.setPrefSize(100.d, 100.d);
+        //epoque2.setPrefSize(100.d, 100.d);
         epoque2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
