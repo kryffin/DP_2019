@@ -15,11 +15,11 @@ public abstract class Epoque {
     //objet 3 : Position[] = pattern de l'arme
 
 
-    private HashMap<Integer, List<List<Object>>> caracteristiquePV;
+    protected HashMap<Integer, List<List<Object>>> caracteristiquePV;
     //clé : taille
     //premiere liste = version du bateau
-    //2nd liste = PV | List des compartiments avec arme
-    // 2nd liste . size ()  ===
+    //2nd liste = PV | description des compartiments avec arme
+    // 2nd liste . size ()  === taille (clé Integer)
 
     public Epoque(){
         caracteristiqueArme = new HashMap<>();
@@ -61,4 +61,6 @@ public abstract class Epoque {
     abstract void setMedium();
     abstract void setLourde();
     abstract void setAtomique();
+
+    abstract void setBateau();
 }

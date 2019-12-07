@@ -85,8 +85,120 @@ public class Epoque2 extends Epoque {
         super.put(Arme.ATOMIQUE, tmp);
     }
 
+    /**
+     * ne regarder pas le code
+     * ça remplit la description des bateaux en fonction des tailles et des versions
+     * utile pour la vu
+     * posez des questions si vous avez un doute
+     */
+    @Override
+    void setBateau() {
+
+        //taille 1 :
+        List<List<Object>> res = new ArrayList<>(); //les differentes versions
+        List<Object> tmp = new ArrayList<>(); //PV | description des compartiments avec arme
+        tmp.add(15);
+        tmp.add(Arme.LEGER);
+        res.add(tmp);
+        caracteristiquePV.put(1, res);
+
+        //reset
+        res = new ArrayList<>();
+        tmp = new ArrayList<>();
+
+        //taille 2:
+        //version 1:
+        tmp.add(30);
+        tmp.add(Arme.LEGER);
+        tmp.add(Arme.LEGER);
+
+        res.add(tmp);
+
+
+        //reset
+        tmp = new ArrayList<>();
+
+        //version 2:
+        tmp.add(30);
+        tmp.add(Arme.MOYENNE);
+        tmp.add(null);
+
+        res.add(tmp);
+
+        caracteristiquePV.put(2, res);
+
+        //reset
+        res = new ArrayList<>();
+        tmp = new ArrayList<>();
+
+        //taille 3:
+        //version 1
+        tmp.add(45);
+        tmp.add(Arme.LEGER);
+        tmp.add(Arme.MOYENNE);
+        tmp.add(Arme.LEGER);
+
+        res.add(tmp);
+
+        tmp = new ArrayList<>();
+        //version 2
+        tmp.add(45);
+        tmp.add(Arme.MOYENNE);
+        tmp.add(Arme.MOYENNE);
+        tmp.add(null);
+
+        res.add(tmp);
+        tmp = new ArrayList<>();
+
+        //version 3
+        tmp.add(45);
+        tmp.add(null);
+        tmp.add(Arme.LOURDE);
+        tmp.add(null);
+
+        res.add(tmp);
+        tmp = new ArrayList<>();
+
+        caracteristiquePV.put(3, res);
+
+        res = new ArrayList<>();
+
+        //taille 4
+        //version 1
+        tmp.add(60);
+        tmp.add(Arme.ATOMIQUE);
+        tmp.add(null);
+        tmp.add(null);
+        tmp.add(null);
+
+
+        res.add(tmp);
+
+        tmp = new ArrayList<>();
+        //version 2
+        tmp.add(60);
+        tmp.add(Arme.LOURDE);
+        tmp.add(Arme.MOYENNE);
+        tmp.add(null);
+        tmp.add(null);
+
+        res.add(tmp);
+        tmp = new ArrayList<>();
+
+        //version 3
+        tmp.add(60);
+        tmp.add(Arme.LEGER);
+        tmp.add(Arme.MOYENNE);
+        tmp.add(Arme.MOYENNE);
+        tmp.add(Arme.LEGER);
+
+        res.add(tmp);
+        caracteristiquePV.put(4, res);
+
+    }
+
     @Override
     public String toString() {
-        return "Alliés";
+        return "1600 AC";
     }
 }
