@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import main.java.controller.Controller;
+import main.java.model.image.ImageManager;
 
 public class PlateauView extends AnchorPane {
     private Controller controller;

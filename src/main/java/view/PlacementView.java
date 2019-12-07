@@ -5,9 +5,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import main.java.controller.Controller;
+import main.java.model.image.ImageManager;
 import main.java.model.plateau.bateau.Bateau;
 
 import java.util.List;
@@ -33,7 +37,8 @@ public class PlacementView {
             for(int h = 0; h<10; h++){
                 Button btt = new Button();
                 btt.setPrefSize(70.0,70.0);
-                btt.setStyle("-fx-background-color: #0000FF; -fx-background-radius: 0");
+                btt.setStyle("\n-fx-background-color: transparent;\n" +
+                        "-fx-background-radius: 0;");
                 btt.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -41,19 +46,22 @@ public class PlacementView {
                     }
                 });
                 String id = ""+((h*10)+w);
-                btt.setText(id);
+                //btt.setText(id);
                 btt.setId(id);
-                rightPane.add(btt, w,h);
+                btt.setContentDisplay(ContentDisplay.TOP);
+
+                rightPane.add(btt,w,h);
             }
         }
+        rightPane.setGridLinesVisible(true);
 
         leftPane = (GridPane) scene.lookup("#flottePane");
         List<Bateau> bateaux = controller.getPlateau().getBateaux();
-        Label[] labels = new Label[bateaux.size()];
+        Button[] buttons = new Button[bateaux.size()];
         int i = 0;
         for (Bateau b : bateaux) {
-            labels[i] = new Label(b.toString());
-            leftPane.add(labels[i], 1, i);
+            buttons[i] = new Button(b.toString());
+            leftPane.add(buttons[i], 1, i);
             i++;
         }
 

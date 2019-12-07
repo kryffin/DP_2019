@@ -48,7 +48,7 @@ public class Controller {
      */
     public void fireEvent(ActionEvent actionEvent) {
         Button b = (Button) actionEvent.getSource();
-        int tmp = Integer.parseInt(b.getText());
+        int tmp = Integer.parseInt(b.getId());
 
         int col = tmp%10;
         int row = (tmp - col)/10;

@@ -50,6 +50,7 @@ public class ViewManager {
      */
     public void setStage (Stage stage) {
         this.stage = stage;
+
     }
 
     /**
@@ -97,6 +98,7 @@ public class ViewManager {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/epoqueView.fxml"));
             epoqueScene = new Scene(root, 800,600);
+            epoqueScene.getStylesheets().addAll(this.getClass().getResource("../view/style.css").toExternalForm());
 
             /*build de la vue elle connait le controlleur */
             EpoqueView epoqueView = new EpoqueView(controller);
@@ -115,7 +117,7 @@ public class ViewManager {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/placementView.fxml"));
             placementScene = new Scene(root, 800,600);
-
+            placementScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
             /*build de la vue elle connait le controlleur */
             PlacementView placementView = new PlacementView(controller);
 
@@ -134,7 +136,7 @@ public class ViewManager {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("../view/plateauView.fxml"));
             plateauScene = new Scene(root, 800,600);
-
+            plateauScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
             /*build de la vue elle connait le controlleur */
             PlateauView plateauView = new PlateauView(controller);
 
