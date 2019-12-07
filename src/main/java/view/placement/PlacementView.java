@@ -1,20 +1,25 @@
-package main.java.view;
+package main.java.view.placement;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import main.java.controller.Controller;
-import main.java.model.image.ImageManager;
 import main.java.model.plateau.bateau.Bateau;
+import main.java.view.choixBateau.PopUp;
+import main.java.view.epoque.EpoqueView;
 
+import java.io.IOException;
 import java.util.List;
 
 public class PlacementView {
@@ -26,8 +31,17 @@ public class PlacementView {
     @FXML
     private VBox leftPane;
 
+
+
+
+    private Stage popUpStage;
+    private PopUp popUp;
+    private Scene popUpScene;
+
     public PlacementView(Controller controller){
         this.controller = controller;
+        popUpStage = new Stage();
+
     }
 
     @FXML
@@ -62,9 +76,39 @@ public class PlacementView {
         int i = 0;
         for (Bateau b : bateaux) {
             buttons[i] = new Button(b.toString());
+            buttons[i].setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int taille = b.getNbCompartiement();
+                    initPopUp();
+                    popUp.setTaille(taille);
+
+                    popUpStage.setTitle("Details bateau taille "+taille);
+                    popUpStage.setScene(popUpScene);
+                    popUpStage.show();
+
+                }
+
+            });
             leftPane.getChildren().add(buttons[i]);
             i++;
         }
 
+
+    }
+    public void initPopUp () {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("popUp.fxml"));
+            popUpScene = new Scene(root, 800,600);
+            //popUpScene.getStylesheets().addAll(this.getClass().getResource("../view/style.css").toExternalForm());
+
+            /*build de la vue elle connait le controlleur */
+             popUp = new PopUp(controller);
+
+            /* init bouttons */
+            popUp.initialize(popUpScene);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -73,4 +73,9 @@ public class Controller {
         jeu.chooseTarget(position);
 
     }
+
+    public void placerShip(ActionEvent event) {
+
+
+    }
 }

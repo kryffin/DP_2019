@@ -114,4 +114,8 @@ public class Bateau {
         sb.append(">");
         return sb.toString();
     }
+
+    public int getNbCompartiement() {
+        return compartiments.size();
+    }
 }

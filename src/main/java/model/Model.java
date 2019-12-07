@@ -19,7 +19,6 @@ public class Model extends Application {
 
     @Override
     public void start (Stage primaryStage) {
-
         primaryStage.setResizable(false);
         vm.setStage(primaryStage); //lie le stage au manager
         vm.displayEpoqueView(); //affiche la vue du choix d'époque

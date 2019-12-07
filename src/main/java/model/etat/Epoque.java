@@ -7,19 +7,27 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class Epoque {
-    private HashMap<Arme, List<Object>> caracteristique;
+    private HashMap<Arme, List<Object>> caracteristiqueArme;
     //en fonction de l'arme, leger, lourd etc qui est la cle
     //on recupere une liste d'objet qui par convention sera
     //objet 1 : integer = degat de l'arme
     //objet 2 : integer = munition de l'arme
     //objet 3 : Position[] = pattern de l'arme
 
+
+    private HashMap<Integer, List<List<Object>>> caracteristiquePV;
+    //clé : taille
+    //premiere liste = version du bateau
+    //2nd liste = PV | List des compartiments avec arme
+    // 2nd liste . size ()  ===
+
     public Epoque(){
-        caracteristique = new HashMap<>();
+        caracteristiqueArme = new HashMap<>();
+        caracteristiquePV = new HashMap<>();
     }
 
     public void put(Arme a, List<Object> l){
-        this.caracteristique.put(a, l);
+        this.caracteristiqueArme.put(a, l);
     }
 
     /**
@@ -30,7 +38,7 @@ public abstract class Epoque {
      */
     private int getParam(Arme a, int i) {
         int res = 0;
-        List<Object> tmp = caracteristique.get(a);
+        List<Object> tmp = caracteristiqueArme.get(a);
         res = (int)tmp.get(i);
         return res;
     }
@@ -44,7 +52,7 @@ public abstract class Epoque {
     }
 
     public Position[] getPattern(Arme a){
-        List<Object> tmp = caracteristique.get(a);
+        List<Object> tmp = caracteristiqueArme.get(a);
         return (Position[])tmp.get(2);
     }
 

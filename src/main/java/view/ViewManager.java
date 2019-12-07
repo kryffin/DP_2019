@@ -5,6 +5,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.java.controller.Controller;
+import main.java.view.epoque.EpoqueView;
+import main.java.view.placement.PlacementView;
+import main.java.view.plateau.PlateauView;
 
 /**
  * Cette classe sert à manipuler les différentes vues, à les initialiser et notamment à passer d'une vue à l'autre
@@ -35,11 +38,18 @@ public class ViewManager {
     /**
      * scene pour le l'affichage du jeu
      */
+
+
+
     private Scene plateauScene;
     /**
      * Constructeur de liaison du controlleur
      * @param controller controlleur à lier
      */
+
+
+
+
     public ViewManager (Controller controller) {
         this.controller = controller;
     }
@@ -96,7 +106,7 @@ public class ViewManager {
      */
     public void initEpoqueView () {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/epoqueView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("epoque/epoqueView.fxml"));
             epoqueScene = new Scene(root, 800,600);
             epoqueScene.getStylesheets().addAll(this.getClass().getResource("../view/style.css").toExternalForm());
 
@@ -115,7 +125,7 @@ public class ViewManager {
      */
     public void initPlacementView () {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/placementView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("placement/placementView.fxml"));
             placementScene = new Scene(root, 800,600);
             placementScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
             /*build de la vue elle connait le controlleur */
@@ -134,7 +144,7 @@ public class ViewManager {
 
     public void initPlateauView(){
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("../view/plateauView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("plateau/plateauView.fxml"));
             plateauScene = new Scene(root, 800,600);
             plateauScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
             /*build de la vue elle connait le controlleur */

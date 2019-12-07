@@ -1,4 +1,4 @@
-package main.java.view;
+package main.java.view.plateau;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
