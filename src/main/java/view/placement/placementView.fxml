@@ -11,7 +11,12 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="600.0" prefWidth="200.0" fx:id="flottePane"/>
+            <HBox prefHeight="600.0" prefWidth="200.0">
+               <children>
+                  <VBox fx:id="flottePane" prefHeight="600.0" prefWidth="100.0" />
+                  <VBox fx:id="placementPane" prefHeight="200.0" prefWidth="100.0" />
+               </children>
+            </HBox>
          </children>
       </Pane>
       <GridPane fx:id="gridPane" prefHeight="600.0" prefWidth="600.0">

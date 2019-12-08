@@ -18,6 +18,8 @@ import main.java.view.ViewManager;
 
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Observable;
+
 
 
 public class Jeu {
@@ -42,7 +44,13 @@ public class Jeu {
         myTurn = true;
         finished = false;
 
+
     }
+
+    public void update(){
+        viewManager.update(this);
+    }
+
     public void setViewManager (ViewManager vm) {
         this.viewManager = vm;
         try {
@@ -152,4 +160,6 @@ public class Jeu {
         }
 
     }
+
+
 }

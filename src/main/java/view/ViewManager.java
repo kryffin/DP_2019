@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.java.controller.Controller;
+import main.java.model.Jeu;
 import main.java.view.epoque.EpoqueView;
 import main.java.view.placement.PlacementView;
 import main.java.view.plateau.PlateauView;
@@ -39,14 +40,14 @@ public class ViewManager {
      * scene pour le l'affichage du jeu
      */
 
-
-
     private Scene plateauScene;
+
+    private Scene currentScene;
+
     /**
      * Constructeur de liaison du controlleur
      * @param controller controlleur à lier
      */
-
 
 
 
@@ -70,7 +71,7 @@ public class ViewManager {
         if (epoqueScene == null) {
             initEpoqueView(); //initialise la vue du choix de l'époque si elle est null
         }
-
+        currentScene = epoqueScene;
         stage.setTitle("SEA TO SEA - choix de l'époque");
         stage.setScene(epoqueScene);
         stage.show();
@@ -83,7 +84,7 @@ public class ViewManager {
         if (placementScene == null) {
             initPlacementView(); //initialise la vue du placement des bateaux si elle est null
         }
-
+        currentScene = placementScene
         stage.setTitle("SEA TO SEA - placement");
         stage.setScene(placementScene);
         stage.show();
@@ -96,7 +97,7 @@ public class ViewManager {
         if (plateauScene == null) {
             initPlateauView(); //initialise la vue du placement des bateaux si elle est null
         }
-
+        currentScene = plateauScene;
         stage.setTitle("SEA TO SEA - plateau");
         stage.setScene(plateauScene);
         stage.show();
@@ -155,5 +156,10 @@ public class ViewManager {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void update(Jeu jeu) {
+       // currentScene.update(jeu);
+
     }
 }

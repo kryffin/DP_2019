@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import main.java.controller.Controller;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class PopUp {
     private Controller controller;
     private int taille;
     private int posList;
+    private Stage stage;
 
 
     public PopUp(Controller controller) {
@@ -54,6 +56,7 @@ public class PopUp {
                 @Override
                 public void handle(ActionEvent event) {
                     controller.createShip(taille, finalI, posList);
+                    stage.close();
                 }
             });
             leftBox.getChildren().add(t);
@@ -70,5 +73,9 @@ public class PopUp {
 
     public void setPosList(int posList) {
         this.posList = posList;
+    }
+
+    public void setStage(Stage popUpStage) {
+        this.stage = popUpStage;
     }
 }

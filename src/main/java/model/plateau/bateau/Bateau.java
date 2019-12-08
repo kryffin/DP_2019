@@ -11,26 +11,6 @@ import java.util.Map;
 
 public class Bateau {
 
-    /// CODE V1
-    /*private HashMap<Position, Compartiment> Compartiments;
-
-    public Bateau(HashMap<Position, Compartiment> compartiments) {
-        Compartiments = compartiments;
-    }
-
-    public Arme getArme(Position position){
-
-        Arme arme = null;
-        for (Map.Entry entry : this.Compartiments.entrySet()) {
-
-            if (entry.getKey().equals(position)) {
-
-                arme = ((Compartiment) entry.getValue()).getArme();
-            }
-        }
-
-        return arme;
-    }*/
 
     private HashMap<Position, Compartiment> compartiments;
 
@@ -49,13 +29,8 @@ public class Bateau {
      */
     public void setPosition (int x, int y) {
         //suppression et sauvegarde des compartiments
-        List<Compartiment> comps = new ArrayList<>();
+        List<Compartiment> comps = new ArrayList<>(compartiments.values());
         int size = compartiments.size();
-        for (int i = 0; i < size; i++) {
-            Compartiment c = compartiments.get(new Position(i, 0));
-            comps.add(c);
-            System.out.println(c);
-        }
 
         compartiments = new HashMap<>();
 

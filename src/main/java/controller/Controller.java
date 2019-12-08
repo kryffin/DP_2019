@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import main.java.model.Jeu;
 import main.java.model.plateau.Plateau;
 import main.java.model.Position;
+import main.java.model.plateau.bateau.Bateau;
+import sun.util.locale.provider.FallbackLocaleProviderAdapter;
 
 import java.util.List;
 
@@ -12,8 +14,16 @@ public class Controller {
 
     private Jeu jeu ;
 
+    /**
+     * le bateau a placer (le dernier selectionné)
+     */
+    private Bateau aPlacer;
+
+    private boolean isPlacer;
+
     public Controller(Jeu j){
         jeu = j ;
+        isPlacer = false;
     }
 
     public Plateau getPlateau () {
@@ -34,7 +44,6 @@ public class Controller {
         int col = tmp%10;
         int row = (tmp - col)/10;
 
-        //todo verifier si c'est col/row ou row/col
         Position position = new Position(col, row);
         jeu.chooseWeapon(position);
 
@@ -46,17 +55,25 @@ public class Controller {
 
     /**
      * les différents boutons du plateaux sont liés à cette fonction
+     * permet de placer le bateau en attribut
      * @param actionEvent
      */
-    public void fireEvent(ActionEvent actionEvent) {
+    public void placer(ActionEvent actionEvent) {
         Button b = (Button) actionEvent.getSource();
         int tmp = Integer.parseInt(b.getId());
 
         int col = tmp%10;
         int row = (tmp - col)/10;
-        System.out.println("col:"+col);
-        System.out.println("row:"+row);
-        System.out.println("====");
+
+        if(isPlacer){
+            int taille = aPlacer.getNbCompartiement();
+            if(col+taille <= 10){
+                aPlacer.setPosition(col, row);
+            } else {
+                System.out.println("Placement non autorisé");
+            }
+
+        }
         //System.out.println(b.getText());
     }
 
@@ -76,12 +93,21 @@ public class Controller {
 
     }
 
-    public void placerShip(ActionEvent event) {
-
-
-    }
 
     public List<List<Object>> getDescription(int taille) {
         return jeu.getDescription(taille);
+    }
+
+    public void setAPlacer(Bateau b) {
+        isPlacer = true;
+        this.aPlacer = b;
+    }
+
+    public void afficherFlotte() {
+        for (Bateau b : jeu.getPlateau().getBateaux()){
+            System.out.println(b);
+        }
+        System.out.println("=======");
+
     }
 }

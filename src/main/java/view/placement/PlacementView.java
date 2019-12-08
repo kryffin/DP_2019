@@ -8,21 +8,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.java.controller.Controller;
 import main.java.model.plateau.bateau.Bateau;
 import main.java.view.choixBateau.PopUp;
-import main.java.view.epoque.EpoqueView;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class PlacementView {
+public class PlacementView implements Observer {
     private Controller controller;
 
     @FXML
@@ -31,7 +28,8 @@ public class PlacementView {
     @FXML
     private VBox leftPane;
 
-
+    @FXML
+    private VBox placementPane;
 
 
     private Stage popUpStage;
@@ -57,7 +55,8 @@ public class PlacementView {
                 btt.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        controller.fireEvent(event);
+                        controller.placer(event);
+                        controller.afficherFlotte();
                     }
                 });
                 String id = ""+((h*10)+w);
@@ -71,11 +70,15 @@ public class PlacementView {
         rightPane.setGridLinesVisible(true);
 
         leftPane = (VBox) scene.lookup("#flottePane");
+        placementPane = (VBox) scene.lookup("#placementPane");
         List<Bateau> bateaux = controller.getPlateau().getBateaux();
         Button[] buttons = new Button[bateaux.size()];
+        Button[] bttPlacement = new Button[bateaux.size()];
         int i = 0;
         for (Bateau b : bateaux) {
-            buttons[i] = new Button(b.toString());
+            buttons[i] = new Button(b.toString().substring(0,7));
+            bttPlacement[i] = new Button("Placer");
+
             int finalI = i;
             buttons[i].setOnAction(new EventHandler<ActionEvent>() {
 
@@ -83,7 +86,7 @@ public class PlacementView {
                 @Override
                 public void handle(ActionEvent event) {
                     int taille = b.getNbCompartiement();
-                    initPopUp(taille, finalI);
+                    initPopUp(taille, finalI, popUpStage);
 
 
                     popUpStage.setTitle("Details bateau taille "+taille);
@@ -93,13 +96,21 @@ public class PlacementView {
                 }
 
             });
+            bttPlacement[i].setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    controller.setAPlacer(b);
+                }
+            });
+
+            placementPane.getChildren().add(bttPlacement[i]);
             leftPane.getChildren().add(buttons[i]);
             i++;
         }
 
 
     }
-    public void initPopUp (int taille, int posList) {
+    public void initPopUp(int taille, int posList, Stage popUpStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("popUp.fxml"));
             popUpScene = new Scene(root, 800,600);
@@ -108,11 +119,18 @@ public class PlacementView {
             /*build de la vue elle connait le controlleur */
              popUp = new PopUp(controller);
 
+             popUp.setStage(popUpStage);
              popUp.setTaille(taille);
              popUp.setPosList(posList);
-            popUp.initialize(popUpScene);
+             popUp.initialize(popUpScene);
+
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
