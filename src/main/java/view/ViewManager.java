@@ -84,7 +84,7 @@ public class ViewManager {
         if (placementScene == null) {
             initPlacementView(); //initialise la vue du placement des bateaux si elle est null
         }
-        currentScene = placementScene
+        currentScene = placementScene;
         stage.setTitle("SEA TO SEA - placement");
         stage.setScene(placementScene);
         stage.show();

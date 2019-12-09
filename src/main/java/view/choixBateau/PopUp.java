@@ -5,7 +5,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -44,7 +46,7 @@ public class PopUp {
             //on itère sur les différentes versions
 
             Button btn = new Button("v"+i);
-            TextArea t = new TextArea();
+            Label t = new Label();
             for (Object o : descr.get(i)){
                 if(o == null)
                     o = "X";

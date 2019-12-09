@@ -36,6 +36,7 @@ public class Bateau {
 
         //replacement des compartiments dans leurs emplacement
         for (int i = 0; i < size; i++) {
+            System.out.println("EEEEEEEEE");
             compartiments.put(new Position(x + i, y), comps.get(i));
         }
     }
