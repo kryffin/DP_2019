@@ -105,9 +105,10 @@ public class PlacementView implements Observer {
 
             });
 
+            int finalI1 = i;
             bttPlacement[i].setOnAction(event -> {
                 selection.setText(b.simpleToString());
-                controller.setAPlacer(b);
+                controller.setAPlacer(finalI1);
             });
 
             placementPane.getChildren().add(bttPlacement[i]);

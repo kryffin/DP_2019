@@ -24,13 +24,12 @@ public class Bateau {
      */
     public void setPosition (int x, int y) {
         //suppression et sauvegarde des compartiments
-
-        int size = compartiments.size();
         int i = 0;
         for(Compartiment c : compartiments){
             Position previousPos = c.getPosition();
-            Position newPos = new Position(previousPos.getX()+i, previousPos.getY());
+            Position newPos = new Position(x+i, y);
             c.setPosition(newPos);
+            i++;
         }
     }
 
@@ -98,5 +97,13 @@ public class Bateau {
 
     public int getNbCompartiement() {
         return compartiments.size();
+    }
+
+    public List<Position> getPositions() {
+        ArrayList res = new ArrayList();
+        for(Compartiment c : compartiments){
+            res.add(c.getPosition());
+        }
+        return res;
     }
 }

@@ -142,17 +142,13 @@ public class Jeu {
         return epoque.getDescription(taille);
     }
 
-    //todo
     public void createShip(int taille, int version, int posList) {
         System.out.println("JE CREER UN BATEAU DE TAILLE" + taille + " A LA VERSION " + version);
-        List<Bateau> b = plateau1.getBateaux();
-        Bateau aModif = b.get(posList);
-
-        b.set(posList,fabriqueEpoque.creerBateau(taille, version));
-
-        for(Bateau bat: b){
-            System.out.println(bat);
-        }
+        List<Bateau> listBateau = plateau1.getBateaux();
+        List<Position> positions = listBateau.get(posList).getPositions();
+        listBateau.set(posList,fabriqueEpoque.creerBateau(taille, version));
+        Bateau aModif = listBateau.get(posList);
+        aModif.setPosition(positions.get(0).getX(), positions.get(0).getY());
     }
 
     public ViewManager getViewManager() {

@@ -100,9 +100,12 @@ public class Controller {
         return jeu.getDescription(taille);
     }
 
-    public void setAPlacer(Bateau b) {
+    public void setAPlacer(int positionFlotte) {
         isPlacer = true;
+        Bateau b = jeu.getPlateau().getBateaux().get(positionFlotte);
         this.aPlacer = b;
+
+        System.out.println("BATEAU A CHANGER : " + b.toString());
 
     }
 
