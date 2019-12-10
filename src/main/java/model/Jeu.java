@@ -32,6 +32,7 @@ public class Jeu {
     private PiloteReseau piloteReseau;
 
     private Arme currentArme;
+    private Tir tir;
 
     private boolean myTurn;
     private boolean finished;
@@ -68,7 +69,10 @@ public class Jeu {
 
     public void chooseTarget(Position position){
 
+        if (this.currentArme != null){
 
+            tir = new Tir(currentArme, position);
+        }
     }
 
     public void shoot(Tir tir){
