@@ -65,6 +65,7 @@ public class PopUp {
                     stage.close();
                 }
             });
+
             t.setAlignment(Pos.CENTER);
             btn.setAlignment(Pos.CENTER);
             gridPane.add(t,0,i);

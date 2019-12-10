@@ -31,6 +31,8 @@ public class Jeu {
     private FabriqueEpoque fabriqueEpoque;
     private ViewManager viewManager;
 
+    private Arme currentArme;
+
     private ControllerReseau cr;
 
     private boolean myTurn;
@@ -69,12 +71,12 @@ public class Jeu {
         return arme;
     }
 
-    public Arme chooseWeapon(Position position) {
-     return  plateau1.getArme(position);
-
+    public void chooseWeapon(Position position) {
+        currentArme = plateau1.getArme(position);
     }
 
     public void chooseTarget(Position position){
+
 
     }
 
