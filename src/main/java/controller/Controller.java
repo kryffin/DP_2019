@@ -6,9 +6,12 @@ import main.java.model.Jeu;
 import main.java.model.plateau.Plateau;
 import main.java.model.Position;
 import main.java.model.plateau.bateau.Bateau;
+import main.java.model.plateau.bateau.Compartiment;
 import main.java.view.placement.PlacementView;
 
 import java.util.List;
+
+import static main.java.model.plateau.bateau.Arme.*;
 
 public class Controller {
 
@@ -20,6 +23,7 @@ public class Controller {
     private Bateau aPlacer;
 
     private boolean isPlacer;
+    private PlacementView placementView ;
 
     public Controller(Jeu j){
         jeu = j ;
@@ -72,7 +76,26 @@ public class Controller {
                 System.out.println("Placement non autorisé");
             }
         }
-       // placementView = jeu.getViewManager().getPlacementView();
+        placementView = jeu.getViewManager().getPlacementView();
+        for(int x = 0 ; x < 10 ; x++){
+            for(int y = 0 ; y <10 ;  y++){
+                for(Bateau bateau : jeu.getPlateau().getBateaux()){
+                    if(bateau.hasCompartiment(new Position(x,y))){
+                        if(bateau.getCompartiment(new Position(x,y)).getArme()==LEGER){
+                                placementView.getButton(x,y).setStyle("-fx-background-color: green");
+                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==MOYENNE){
+                            placementView.getButton(x,y).setStyle("-fx-background-color: blue");
+                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==LOURDE){
+                            placementView.getButton(x,y).setStyle("-fx-background-color: purple");
+                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==ATOMIQUE){
+                            placementView.getButton(x,y).setStyle("-fx-background-color: orange");
+                        } else{
+                            placementView.getButton(x,y).setStyle("-fx-background-color: white");
+                        }
+                    }
+                }
+            }
+        }
 
     }
 
