@@ -38,6 +38,8 @@ public class Controller {
 
     public void createShip(int taille, int version, int posList){
         jeu.createShip(taille,version, posList);
+        updateColor();
+
     }
 
 
@@ -85,26 +87,8 @@ public class Controller {
                 placementView.getButton(x,y).setStyle("-fx-background-color: transparent");
             }
         }
-                for(int x = 0 ; x < 10 ; x++){
-            for(int y = 0 ; y <10 ;  y++){
 
-                for(Bateau bateau : jeu.getPlateau().getBateaux()){
-                    if(bateau.hasCompartiment(new Position(x,y))){
-                        if(bateau.getCompartiment(new Position(x,y)).getArme()==LEGER){
-                                placementView.getButton(x,y).setStyle("-fx-background-color: green");
-                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==MOYENNE){
-                            placementView.getButton(x,y).setStyle("-fx-background-color: blue");
-                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==LOURDE){
-                            placementView.getButton(x,y).setStyle("-fx-background-color: purple");
-                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==ATOMIQUE){
-                            placementView.getButton(x,y).setStyle("-fx-background-color: orange");
-                        } else{
-                            placementView.getButton(x,y).setStyle("-fx-background-color: white");
-                        }
-                    }
-                }
-            }
-        }
+        updateColor();
 
     }
 
@@ -143,7 +127,6 @@ public class Controller {
             System.out.println(b);
         }
         System.out.println("=======");
-
     }
 
     public void switchToPlateauView() {
@@ -156,6 +139,29 @@ public class Controller {
 
     public void recevoirBilan (EtatTir[] etats) {
         jeu.recevoirBilan(etats);
+    }
+    public void updateColor(){
+        for(int x = 0 ; x < 10 ; x++){
+            for(int y = 0 ; y <10 ;  y++){
+
+                for(Bateau bateau : jeu.getPlateau().getBateaux()){
+                    if(bateau.hasCompartiment(new Position(x,y))){
+                        if(bateau.getCompartiment(new Position(x,y)).getArme()==LEGER){
+                            placementView.getButton(x,y).setStyle("-fx-background-color: green");
+                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==MOYENNE){
+                            placementView.getButton(x,y).setStyle("-fx-background-color: blue");
+                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==LOURDE){
+                            placementView.getButton(x,y).setStyle("-fx-background-color: purple");
+                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==ATOMIQUE){
+                            placementView.getButton(x,y).setStyle("-fx-background-color: orange");
+                        } else{
+                            placementView.getButton(x,y).setStyle("-fx-background-color: white");
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 }
