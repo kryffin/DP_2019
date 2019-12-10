@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.java.controller.Controller;
 import main.java.model.plateau.bateau.Bateau;
+import main.java.view.ViewManager;
 import main.java.view.choixBateau.PopUp;
 
 import java.util.List;
@@ -71,6 +72,7 @@ public class PlacementView implements Observer {
 
                 rightPane.add(buttons[w][h],w,h);
             }
+
         }
         rightPane.setGridLinesVisible(true);
 
@@ -107,7 +109,6 @@ public class PlacementView implements Observer {
         }
 
         leftPane.getChildren().add(selection);
-
     }
     public void initPopUp(int taille, int posList, Stage popUpStage) {
         try {
@@ -132,8 +133,10 @@ public class PlacementView implements Observer {
         return buttons[x][y];
     }
 
+
     @Override
     public void update(Observable o, Object arg) {
+
 
     }
 

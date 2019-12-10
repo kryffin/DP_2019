@@ -1,13 +1,13 @@
 package main.java.model;
 
 import main.java.controller.ControllerReseau;
+import main.java.model.etat.Epoque;
+import main.java.model.etat.Epoque1;
+import main.java.model.etat.Epoque2;
 import main.java.model.joueur.Humain;
 import main.java.model.joueur.Joueur;
 import main.java.model.plateau.PlateauInfo;
 import main.java.model.plateau.bateau.Bateau;
-import main.java.model.etat.Epoque;
-import main.java.model.etat.Epoque1;
-import main.java.model.etat.Epoque2;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
 import main.java.model.fabriqueEpoque.fabriqueEpoque1.FabriqueEpoque1;
 import main.java.model.fabriqueEpoque.fabriqueEpoque2.FabriqueEpoque2;
@@ -15,11 +15,10 @@ import main.java.model.plateau.Plateau;
 import main.java.model.plateau.bateau.Arme;
 
 import main.java.view.ViewManager;
+import main.java.view.placement.PlacementView;
 
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.Observable;
-
 
 
 public class Jeu {
@@ -158,8 +157,9 @@ public class Jeu {
         for(Bateau bat: b){
             System.out.println(bat);
         }
-
     }
 
-
+    public ViewManager getViewManager() {
+        return viewManager;
+    }
 }

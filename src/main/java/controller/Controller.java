@@ -6,6 +6,7 @@ import main.java.model.Jeu;
 import main.java.model.plateau.Plateau;
 import main.java.model.Position;
 import main.java.model.plateau.bateau.Bateau;
+import main.java.view.placement.PlacementView;
 
 import java.util.List;
 
@@ -60,7 +61,6 @@ public class Controller {
     public void placer(ActionEvent actionEvent) {
         Button b = (Button) actionEvent.getSource();
         int tmp = Integer.parseInt(b.getId());
-
         int col = tmp%10;
         int row = (tmp - col)/10;
 
@@ -71,9 +71,9 @@ public class Controller {
             } else {
                 System.out.println("Placement non autorisé");
             }
-
         }
-        //System.out.println(b.getText());
+       // placementView = jeu.getViewManager().getPlacementView();
+
     }
 
     public void tirer(ActionEvent e) {
@@ -100,6 +100,7 @@ public class Controller {
     public void setAPlacer(Bateau b) {
         isPlacer = true;
         this.aPlacer = b;
+
     }
 
     public void afficherFlotte() {

@@ -44,6 +44,8 @@ public class ViewManager {
 
     private Scene currentScene;
 
+    private PlacementView placementView;
+
     /**
      * Constructeur de liaison du controlleur
      * @param controller controlleur à lier
@@ -116,6 +118,7 @@ public class ViewManager {
 
             /* init bouttons */
             epoqueView.initialize(epoqueScene);
+
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -134,6 +137,7 @@ public class ViewManager {
 
             /* init bouttons */
             placementView.initialize(placementScene);
+            this.placementView = placementView;
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -158,8 +162,13 @@ public class ViewManager {
         }
     }
 
+    public PlacementView getPlacementView() {
+        return placementView;
+    }
+
     public void update(Jeu jeu) {
        // currentScene.update(jeu);
 
     }
+
 }
