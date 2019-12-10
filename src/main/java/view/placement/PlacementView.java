@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.java.controller.Controller;
@@ -53,6 +54,18 @@ public class PlacementView implements Observer {
         rightPane = (GridPane) scene.lookup("#gridPane");
         Button tmp = (Button) scene.lookup("#start");
         tmp.setStyle("-fx-background-color: green");
+
+        Pane p1 = (Pane) scene.lookup("#col1");
+        Pane p2 = (Pane) scene.lookup("#col2");
+        Pane p3 = (Pane) scene.lookup("#col3");
+        Pane p4 = (Pane) scene.lookup("#col4");
+        Pane p5 = (Pane) scene.lookup("#col5");
+
+        p1.setStyle("-fx-background-color: white;");
+        p2.setStyle("-fx-background-color: green;");
+        p3.setStyle("-fx-background-color: blue;");
+        p4.setStyle("-fx-background-color: purple;");
+        p5.setStyle("-fx-background-color: orange;");
         tmp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

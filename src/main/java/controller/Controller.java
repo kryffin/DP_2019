@@ -9,6 +9,7 @@ import main.java.model.plateau.Plateau;
 import main.java.model.Position;
 import main.java.model.plateau.bateau.Bateau;
 import main.java.model.plateau.bateau.Compartiment;
+import main.java.view.ViewManager;
 import main.java.view.placement.PlacementView;
 
 import java.util.List;
@@ -32,6 +33,9 @@ public class Controller {
         isPlacer = false;
     }
 
+    public void setViewManager(ViewManager v){
+        this.placementView = v.getPlacementView();
+    }
     public Plateau getPlateau () {
         return jeu.getPlateau();
     }
@@ -81,7 +85,7 @@ public class Controller {
                 System.out.println("Placement non autorisé");
             }
         }
-        placementView = jeu.getViewManager().getPlacementView();
+
         for(int x = 0 ; x < 10 ; x++){
             for(int y = 0 ; y <10 ;  y++) {
                 placementView.getButton(x,y).setStyle("-fx-background-color: transparent");
@@ -146,6 +150,8 @@ public class Controller {
 
                 for(Bateau bateau : jeu.getPlateau().getBateaux()){
                     if(bateau.hasCompartiment(new Position(x,y))){
+                        System.out.println(placementView);
+                        //System.out.println(placementView.getButton(x,y));
                         if(bateau.getCompartiment(new Position(x,y)).getArme()==LEGER){
                             placementView.getButton(x,y).setStyle("-fx-background-color: green");
                         } else if(bateau.getCompartiment(new Position(x,y)).getArme()==MOYENNE){

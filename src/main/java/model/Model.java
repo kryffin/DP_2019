@@ -16,9 +16,15 @@ public class Model extends Application {
     public static void main(String[] argv) throws RemoteException, NotBoundException {
         Jeu jeu = new Jeu();
         Controller controller = new Controller(jeu);
-        PiloteReseau pilote = new PiloteReseau(controller);
+
         vm = new ViewManager(controller);
         jeu.setViewManager(vm); //liaison
+        controller.setViewManager(vm);
+
+
+
+
+        PiloteReseau pilote = new PiloteReseau(controller);
         jeu.setPiloteReseau(pilote);
         launch(argv);
     }

@@ -44,6 +44,7 @@ public class Jeu {
         joueur = new Humain();
         myTurn = true;
         finished = false;
+
     }
 
     public void update(){
