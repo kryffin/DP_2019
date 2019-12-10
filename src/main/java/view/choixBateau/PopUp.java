@@ -3,6 +3,7 @@ package main.java.view.choixBateau;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +23,7 @@ public class PopUp {
     private VBox leftBox;
 
     @FXML
-    private VBox rightBox;
+    private GridPane gridPane;
 
     private Controller controller;
     private int taille;
@@ -37,10 +38,12 @@ public class PopUp {
     @FXML
     public void initialize(Scene scene) {
 
-        leftBox = (VBox) scene.lookup("#VBoxLeft");
-        rightBox = (VBox) scene.lookup("#VBoxRight");
+        gridPane = (GridPane) scene.lookup("#popUpGridPane");
+
 
         List<List<Object>> descr = controller.getDescription(taille);
+        gridPane.setGridLinesVisible(true);
+        gridPane.setAlignment(Pos.CENTER);
         System.out.println(descr);
         for(int i = 0; i < descr.size() ; i ++){
             //on itère sur les différentes versions
@@ -48,8 +51,9 @@ public class PopUp {
             Button btn = new Button("v"+i);
             Label t = new Label();
             for (Object o : descr.get(i)){
-                if(o == null)
+                if(o == null) {
                     o = "X";
+                }
                 t.setText(t.getText()+"\n"+o.toString());
             }
 
@@ -61,8 +65,10 @@ public class PopUp {
                     stage.close();
                 }
             });
-            leftBox.getChildren().add(t);
-            rightBox.getChildren().add(btn);
+            t.setAlignment(Pos.CENTER);
+            btn.setAlignment(Pos.CENTER);
+            gridPane.add(t,0,i);
+            gridPane.add(btn, 1, i);
         }
 
 

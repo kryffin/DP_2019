@@ -16,7 +16,6 @@ import main.java.controller.Controller;
 import main.java.model.plateau.bateau.Bateau;
 import main.java.view.choixBateau.PopUp;
 
-import java.awt.desktop.AboutEvent;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -110,11 +109,10 @@ public class PlacementView implements Observer {
         leftPane.getChildren().add(selection);
 
     }
-
     public void initPopUp(int taille, int posList, Stage popUpStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("popUp.fxml"));
-            popUpScene = new Scene(root, 800,600);
+            popUpScene = new Scene(root, 300,600);
             //popUpScene.getStylesheets().addAll(this.getClass().getResource("../view/style.css").toExternalForm());
 
             /*build de la vue elle connait le controlleur */
