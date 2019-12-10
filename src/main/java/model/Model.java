@@ -19,8 +19,6 @@ public class Model extends Application {
 
         vm = new ViewManager(controller);
         jeu.setViewManager(vm); //liaison
-        controller.setViewManager(vm);
-
 
 
 

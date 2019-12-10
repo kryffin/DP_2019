@@ -90,6 +90,8 @@ public class ViewManager {
         stage.setTitle("SEA TO SEA - placement");
         stage.setScene(placementScene);
         stage.show();
+        controller.setPlacementView(placementView);
+        controller.updateColor();
     }
 
     /**
@@ -133,11 +135,10 @@ public class ViewManager {
             placementScene = new Scene(root, 800,600);
             placementScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
             /*build de la vue elle connait le controlleur */
-            PlacementView placementView = new PlacementView(controller);
+            placementView = new PlacementView(controller);
 
             /* init bouttons */
             placementView.initialize(placementScene);
-            this.placementView = placementView;
         } catch (Exception e){
             e.printStackTrace();
         }

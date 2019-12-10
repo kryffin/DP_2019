@@ -8,7 +8,6 @@ import main.java.model.Tir;
 import main.java.model.plateau.Plateau;
 import main.java.model.Position;
 import main.java.model.plateau.bateau.Bateau;
-import main.java.model.plateau.bateau.Compartiment;
 import main.java.view.ViewManager;
 import main.java.view.placement.PlacementView;
 
@@ -26,24 +25,26 @@ public class Controller {
     private Bateau aPlacer;
 
     private boolean isPlacer;
-    private PlacementView placementView ;
+
+    private PlacementView placementView;
 
     public Controller(Jeu j){
         jeu = j ;
         isPlacer = false;
     }
 
-    public void setViewManager(ViewManager v){
-        this.placementView = v.getPlacementView();
+    public void setPlacementView (PlacementView pv) {
+        System.out.println(pv);
+        placementView = pv;
     }
+
     public Plateau getPlateau () {
         return jeu.getPlateau();
     }
 
     public void createShip(int taille, int version, int posList){
         jeu.createShip(taille,version, posList);
-        updateColor();
-
+        //updateColor();
     }
 
 
@@ -88,6 +89,7 @@ public class Controller {
 
         for(int x = 0 ; x < 10 ; x++){
             for(int y = 0 ; y <10 ;  y++) {
+                System.out.println(placementView);
                 placementView.getButton(x,y).setStyle("-fx-background-color: transparent");
             }
         }
@@ -144,7 +146,9 @@ public class Controller {
     public void recevoirBilan (EtatTir[] etats) {
         jeu.recevoirBilan(etats);
     }
+
     public void updateColor(){
+
         for(int x = 0 ; x < 10 ; x++){
             for(int y = 0 ; y <10 ;  y++){
 
