@@ -32,6 +32,7 @@ public class PlacementView implements Observer {
     @FXML
     private VBox placementPane;
 
+    private Button[][] buttons;
 
     private Stage popUpStage;
     private PopUp popUp;
@@ -42,6 +43,7 @@ public class PlacementView implements Observer {
         this.controller = controller;
         popUpStage = new Stage();
         selection = new Label("");
+        buttons = new Button[10][10];
     }
 
     @FXML
@@ -125,8 +127,13 @@ public class PlacementView implements Observer {
         }
     }
 
+    public Button getButton (int x, int y) {
+        return buttons[x][y];
+    }
+
     @Override
     public void update(Observable o, Object arg) {
 
     }
+
 }
