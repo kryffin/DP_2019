@@ -70,6 +70,7 @@ public class Controller {
             int taille = aPlacer.getNbCompartiement();
             if(col+taille <= 10){
                 aPlacer.setPosition(col, row);
+                afficherFlotte();
             } else {
                 System.out.println("Placement non autorisé");
             }

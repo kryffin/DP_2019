@@ -24,7 +24,9 @@ public class PiloteReseau extends UnicastRemoteObject implements Remote {
 
         gameController = controller;
 
+        /*
         Registry registry = LocateRegistry.getRegistry();
+
 
         System.out.println("RMI registry bindings: ");
         String[] registries = registry.list();
@@ -35,7 +37,9 @@ public class PiloteReseau extends UnicastRemoteObject implements Remote {
 
         String remoteObjectName = "pilote_adverse";
         piloteAdverse = (PiloteReseau) registry.lookup(remoteObjectName);
+         */
     }
+
 
     /* SERVER SIDE : fonction pour recevoir des informations */
 

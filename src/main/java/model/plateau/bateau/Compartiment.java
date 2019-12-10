@@ -1,20 +1,28 @@
 package main.java.model.plateau.bateau;
 
+import main.java.model.Position;
+
 public class Compartiment {
 
     private Arme arme;
 
     private int pv;
     private int munitionActuel;
+    private Position position;
 
 
-    public Compartiment(int pv, Arme arme){
+    public Compartiment(int pv, Arme arme, Position position){
         this.pv = pv;
         this.arme = arme;
+        this.position = position;
     }
 
     public Arme getArme(){
         return this.arme;
+    }
+
+    public Position getPosition(){
+        return position;
     }
 
     public void setMunitionActuel(int munitionActuel) {
@@ -27,7 +35,7 @@ public class Compartiment {
 
     @Override
     public String toString() {
-        return "Compartiment<" + pv + "," + munitionActuel + "," + arme + ">";
+        return "Compartiment<" + pv + "," + munitionActuel + "," + arme + " Position : "+ position + ">\n";
     }
 
 
@@ -38,5 +46,9 @@ public class Compartiment {
         }else{
             pv = newpv;
         }
+    }
+
+    public void setPosition(Position p) {
+        this.position = p;
     }
 }
