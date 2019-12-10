@@ -31,6 +31,7 @@ public class Jeu {
     private ViewManager viewManager;
 
     private Arme currentArme;
+    private Tir tir;
 
     private ControllerReseau cr;
 
@@ -71,12 +72,20 @@ public class Jeu {
     }
 
     public void chooseWeapon(Position position) {
+
         currentArme = plateau1.getArme(position);
     }
 
     public void chooseTarget(Position position){
 
+        if (this.currentArme != null){
 
+            this.tir = new Tir(currentArme, position);
+        }
+    }
+
+    public Tir getTir() {
+        return tir;
     }
 
     public EtatTir[] shoot(Tir tir){
