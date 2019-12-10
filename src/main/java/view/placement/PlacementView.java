@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -35,11 +36,12 @@ public class PlacementView implements Observer {
     private Stage popUpStage;
     private PopUp popUp;
     private Scene popUpScene;
+    private Label selection;
 
     public PlacementView(Controller controller){
         this.controller = controller;
         popUpStage = new Stage();
-
+        selection = new Label("");
     }
 
     @FXML
@@ -80,27 +82,20 @@ public class PlacementView implements Observer {
             bttPlacement[i] = new Button("Placer");
 
             int finalI = i;
-            buttons[i].setOnAction(new EventHandler<ActionEvent>() {
+            buttons[i].setOnAction(event -> {
+                int taille = b.getNbCompartiement();
+                initPopUp(taille, finalI, popUpStage);
 
 
-                @Override
-                public void handle(ActionEvent event) {
-                    int taille = b.getNbCompartiement();
-                    initPopUp(taille, finalI, popUpStage);
-
-
-                    popUpStage.setTitle("Details bateau taille "+taille);
-                    popUpStage.setScene(popUpScene);
-                    popUpStage.show();
-
-                }
+                popUpStage.setTitle("Details bateau taille "+taille);
+                popUpStage.setScene(popUpScene);
+                popUpStage.show();
 
             });
-            bttPlacement[i].setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    controller.setAPlacer(b);
-                }
+
+            bttPlacement[i].setOnAction(event -> {
+                selection.setText(b.simpleToString());
+                controller.setAPlacer(b);
             });
 
             placementPane.getChildren().add(bttPlacement[i]);
@@ -108,6 +103,7 @@ public class PlacementView implements Observer {
             i++;
         }
 
+        leftPane.getChildren().add(selection);
 
     }
     public void initPopUp(int taille, int posList, Stage popUpStage) {

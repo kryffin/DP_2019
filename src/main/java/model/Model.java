@@ -20,6 +20,7 @@ public class Model extends Application {
     @Override
     public void start (Stage primaryStage) {
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(event -> System.exit(0));
         vm.setStage(primaryStage); //lie le stage au manager
         vm.displayEpoqueView(); //affiche la vue du choix d'époque
     }

@@ -8,9 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class Bateau {
-
 
     private HashMap<Position, Compartiment> compartiments;
 
@@ -36,7 +34,6 @@ public class Bateau {
 
         //replacement des compartiments dans leurs emplacement
         for (int i = 0; i < size; i++) {
-            System.out.println("EEEEEEEEE");
             compartiments.put(new Position(x + i, y), comps.get(i));
         }
     }
@@ -89,6 +86,10 @@ public class Bateau {
         }
         sb.append(">");
         return sb.toString();
+    }
+
+    public String simpleToString () {
+        return "Bateau" + compartiments.size();
     }
 
     public int getNbCompartiement() {
