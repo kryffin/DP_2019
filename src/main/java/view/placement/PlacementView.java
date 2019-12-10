@@ -51,7 +51,14 @@ public class PlacementView implements Observer {
     @FXML
     public void initialize(Scene scene){
         rightPane = (GridPane) scene.lookup("#gridPane");
-
+        Button tmp = (Button) scene.lookup("#start");
+        tmp.setStyle("-fx-background-color: green");
+        tmp.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                controller.switchToPlateauView();
+            }
+        });
         for(int w = 0; w<10; w++){
             for(int h = 0; h<10; h++){
                 buttons[w][h] = new Button();

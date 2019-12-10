@@ -110,4 +110,8 @@ public class Controller {
         System.out.println("=======");
 
     }
+
+    public void switchToPlateauView() {
+        jeu.getViewManager().displayPlateauView();
+    }
 }
