@@ -2,7 +2,9 @@ package main.java.controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import main.java.model.EtatTir;
 import main.java.model.Jeu;
+import main.java.model.Tir;
 import main.java.model.plateau.Plateau;
 import main.java.model.Position;
 import main.java.model.plateau.bateau.Bateau;
@@ -114,4 +116,13 @@ public class Controller {
     public void switchToPlateauView() {
         jeu.getViewManager().displayPlateauView();
     }
+
+    public void shoot (Tir tir) {
+        jeu.shoot(tir);
+    }
+
+    public void recevoirBilan (EtatTir[] etats) {
+        jeu.recevoirBilan(etats);
+    }
+
 }
