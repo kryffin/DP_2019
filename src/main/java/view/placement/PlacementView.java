@@ -16,6 +16,7 @@ import main.java.controller.Controller;
 import main.java.model.plateau.bateau.Bateau;
 import main.java.view.choixBateau.PopUp;
 
+import java.awt.desktop.AboutEvent;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -32,6 +33,7 @@ public class PlacementView implements Observer {
     @FXML
     private VBox placementPane;
 
+    // tableau 2 dimensions de la grille des positions pour placer les bateaux
     private Button[][] buttons;
 
     private Stage popUpStage;
@@ -52,11 +54,11 @@ public class PlacementView implements Observer {
 
         for(int w = 0; w<10; w++){
             for(int h = 0; h<10; h++){
-                Button btt = new Button();
-                btt.setPrefSize(70.0,70.0);
-                btt.setStyle("\n-fx-background-color: transparent;\n" +
+                buttons[w][h] = new Button();
+                buttons[w][h].setPrefSize(70.0,70.0);
+                buttons[w][h].setStyle("\n-fx-background-color: transparent;\n" +
                         "-fx-background-radius: 0;");
-                btt.setOnAction(new EventHandler<ActionEvent>() {
+                buttons[w][h].setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
                         controller.placer(event);
@@ -65,10 +67,10 @@ public class PlacementView implements Observer {
                 });
                 String id = ""+((h*10)+w);
                 //btt.setText(id);
-                btt.setId(id);
-                btt.setContentDisplay(ContentDisplay.TOP);
+                buttons[w][h].setId(id);
+                buttons[w][h].setContentDisplay(ContentDisplay.TOP);
 
-                rightPane.add(btt,w,h);
+                rightPane.add(buttons[w][h],w,h);
             }
         }
         rightPane.setGridLinesVisible(true);
@@ -108,6 +110,7 @@ public class PlacementView implements Observer {
         leftPane.getChildren().add(selection);
 
     }
+
     public void initPopUp(int taille, int posList, Stage popUpStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("popUp.fxml"));
