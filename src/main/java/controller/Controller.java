@@ -81,7 +81,13 @@ public class Controller {
         }
         placementView = jeu.getViewManager().getPlacementView();
         for(int x = 0 ; x < 10 ; x++){
+            for(int y = 0 ; y <10 ;  y++) {
+                placementView.getButton(x,y).setStyle("-fx-background-color: transparent");
+            }
+        }
+                for(int x = 0 ; x < 10 ; x++){
             for(int y = 0 ; y <10 ;  y++){
+
                 for(Bateau bateau : jeu.getPlateau().getBateaux()){
                     if(bateau.hasCompartiment(new Position(x,y))){
                         if(bateau.getCompartiment(new Position(x,y)).getArme()==LEGER){
