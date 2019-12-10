@@ -3,17 +3,23 @@ package main.java.model;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import main.java.controller.Controller;
+import main.java.controller.PiloteReseau;
 import main.java.view.ViewManager;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class Model extends Application {
 
     private static ViewManager vm;
 
-    public static void main(String[] argv){
+    public static void main(String[] argv) throws RemoteException, NotBoundException {
         Jeu jeu = new Jeu();
         Controller controller = new Controller(jeu);
+        PiloteReseau pilote = new PiloteReseau(controller);
         vm = new ViewManager(controller);
         jeu.setViewManager(vm); //liaison
+        jeu.setPiloteReseau(pilote);
         launch(argv);
     }
 
