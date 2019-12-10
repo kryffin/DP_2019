@@ -46,6 +46,7 @@ public class Plateau {
         return arme;
     }
 
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
