@@ -6,10 +6,7 @@ import main.java.model.Tir;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 public class PiloteReseau extends UnicastRemoteObject implements Remote {
 
@@ -50,7 +47,7 @@ public class PiloteReseau extends UnicastRemoteObject implements Remote {
 
     public void recevoirTir (Tir tir) {
         //passer le tir au controller pour que le game le process
-        gameController.shoot(tir);
+        gameController.recevoirTir(tir);
     }
 
     public void recevoirBilan (EtatTir[] etats) {

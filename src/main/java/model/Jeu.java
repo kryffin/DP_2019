@@ -55,47 +55,56 @@ public class Jeu {
         this.viewManager = vm;
     }
 
-    // myTurn a true : c'est le tour du joueur1 (humain)
-    // myTurn a false : c'est le tour du joueur2 (machine)
-    public Arme getArme(Position position){
-
-        Arme arme;
-        arme = this.plateau1.getArme(position);
-        return arme;
-    }
-
     public void chooseWeapon(Position position) {
         currentArme = plateau1.getArme(position);
     }
 
     public void chooseTarget(Position position){
-
         if (this.currentArme != null){
-
+            System.out.println("tir avec" + currentArme);
             tir = new Tir(currentArme, position);
+            return;
         }
+        System.out.println("aucune arme selectionnée");
     }
 
-    public void shoot(Tir tir){
+    public void recevoirTir(Tir tir){
+        // cible du tir
         Position target = tir.getCible();
-        Position[] patterns = epoque.getPattern(tir.getArme());
-        EtatTir[] etats = new EtatTir[patterns.length];
+
+        // positions du pattern du tir
+        Position[] pattern = epoque.getPattern(tir.getArme());
+
+        // construction du bilan à renvoyer
+        Bilan bilan = new Bilan(pattern);
+
+        // degats du tir
         int degat = epoque.getDegat(tir.getArme());
-        int cpt = 0;
-        for(Position p : patterns){
-            etats[cpt] = EtatTir.LOUPE;
+
+        for(Position p : pattern){
+            // on initialise le tir à LOUPE
+            bilan.setEtat(EtatTir.LOUPE, p);
+
+            // prochaine position par rapport au pattern
             Position newPosition = calculerPosition(target,p);
+
+            // vérification des bateaux
             for(Bateau b : plateau1.getBateaux()){
+                // si le bateau est touché par l'attaque
                 if(b.hasCompartiment(newPosition)){
+                    // on retire de la vie au bateau
                     b.getCompartiment(newPosition).decreaseHP(degat);
+
+                    // si le bateau meurs
                     if(b.isDead()){
-                        etats[cpt]=EtatTir.TOUCHE_COULE;
+                        // etat du bilan à TOUCHE_COULE
+                        bilan.setEtat(EtatTir.TOUCHE_COULE, p);
                     }else{
-                        etats[cpt]= EtatTir.TOUCHE;
+                        // sinon etat du bilan à TOUCHE
+                        bilan.setEtat(EtatTir.TOUCHE, p);
                     }
                 }
             }
-            cpt++;
         }
 
         //ici on va envoyer le bilan de l'attaque reçue à l'adversaire

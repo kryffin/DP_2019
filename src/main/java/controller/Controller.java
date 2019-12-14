@@ -9,7 +9,6 @@ import main.java.model.plateau.Plateau;
 import main.java.model.Position;
 import main.java.model.plateau.bateau.Bateau;
 import main.java.view.ViewManager;
-import main.java.view.placement.PlacementView;
 
 import java.util.List;
 
@@ -105,7 +104,6 @@ public class Controller {
         int col = tmp%10;
         int row = (tmp - col)/10;
 
-        //todo tirer a la position avec l'arme sauvegarder au préalable
         Position position = new Position(col, row);
 
         jeu.chooseTarget(position);
@@ -142,8 +140,8 @@ public class Controller {
         System.out.println("Plateau mal formé, on ne change pas la vue");
     }
 
-    public void shoot (Tir tir) {
-        jeu.shoot(tir);
+    public void recevoirTir(Tir tir) {
+        jeu.recevoirTir(tir);
     }
 
     public void recevoirBilan (EtatTir[] etats) {
