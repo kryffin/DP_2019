@@ -46,6 +46,23 @@ public class Plateau {
         return arme;
     }
 
+    public boolean plateauBienForme () {
+        boolean[][] casesUtilisees = new boolean[10][10];
+
+        // parcours des bateaux
+        for (Bateau b : bateaux) {
+            // parcours des positions occupées par le bateau
+            for (Position p : b.getPositions()) {
+                // si la position est déjà occupée : retourner faux
+                if (casesUtilisees[p.getX()][p.getY()]) return false;
+                // sinon on dit que cette case est occupée
+                casesUtilisees[p.getX()][p.getY()] = true;
+            }
+        }
+
+        // à ce moment, tout va bien
+        return true;
+    }
 
     @Override
     public String toString() {

@@ -17,9 +17,11 @@ public class PlateauView extends AnchorPane {
     @FXML
     private GridPane leftPane;
 
+    private Button[][] boutonsJoueur;
+
     public PlateauView(Controller c){
         this.controller = c;
-
+        boutonsJoueur = new Button[10][10];
     }
 
     @FXML
@@ -29,14 +31,14 @@ public class PlateauView extends AnchorPane {
         leftPane = (GridPane) scene.lookup("#joueur");
 
 
-        for(int w = 0; w<10; w++){
-            for(int h = 0; h<10; h++){
+        for(int h = 0; h<10; h++){
+            for(int w = 0; w<10; w++){
 
                 //======boutons du joueur============
-                Button bttJoueur = new Button();
-                bttJoueur.setPrefSize(40.0,40.0);
-                bttJoueur.setStyle("-fx-background-color: transparent; -fx-background-radius: 0");
-                bttJoueur.setOnAction(new EventHandler<ActionEvent>() {
+                boutonsJoueur[w][h] = new Button();
+                boutonsJoueur[w][h].setPrefSize(40.0,40.0);
+                boutonsJoueur[w][h].setStyle("-fx-background-color: transparent; -fx-background-radius: 0");
+                boutonsJoueur[w][h].setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
                         controller.chooseWeapon(event);
@@ -44,8 +46,8 @@ public class PlateauView extends AnchorPane {
                 });
                 String id = "J"+((h*10)+w);
                 //bttJoueur.setText(id);
-                bttJoueur.setId(id);
-                leftPane.add(bttJoueur, w,h);
+                boutonsJoueur[w][h].setId(id);
+                leftPane.add(boutonsJoueur[w][h], w,h);
                 //=====================================
 
                 //======boutons plateau adversaire============
@@ -76,4 +78,9 @@ public class PlateauView extends AnchorPane {
         System.out.println(leftPane.getChildren().size());
         System.out.println(rightPane.getChildren().size());
     }
+
+    public Button getBoutonJoueur (int x, int y) {
+        return boutonsJoueur[x][y];
+    }
+
 }

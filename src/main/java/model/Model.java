@@ -20,8 +20,6 @@ public class Model extends Application {
         vm = new ViewManager(controller);
         jeu.setViewManager(vm); //liaison
 
-
-
         PiloteReseau pilote = new PiloteReseau(controller);
         jeu.setPiloteReseau(pilote);
         launch(argv);

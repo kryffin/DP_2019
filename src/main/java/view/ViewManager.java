@@ -44,7 +44,13 @@ public class ViewManager {
 
     private Scene currentScene;
 
+    private boolean placement = false;
+
+    private boolean plateau = false;
+
     private PlacementView placementView;
+
+    private PlateauView plateauView;
 
     /**
      * Constructeur de liaison du controlleur
@@ -55,6 +61,7 @@ public class ViewManager {
 
     public ViewManager (Controller controller) {
         this.controller = controller;
+        controller.setPlacementView(this);
     }
 
     /**
@@ -90,7 +97,7 @@ public class ViewManager {
         stage.setTitle("SEA TO SEA - placement");
         stage.setScene(placementScene);
         stage.show();
-        controller.setPlacementView(placementView);
+        placement = true;
         controller.updateColor();
     }
 
@@ -105,6 +112,9 @@ public class ViewManager {
         stage.setTitle("SEA TO SEA - plateau");
         stage.setScene(plateauScene);
         stage.show();
+        plateau = true;
+        placement = false;
+        controller.updateColor();
     }
     /**
      * Initialise la vue du choix de l'époque
@@ -154,7 +164,7 @@ public class ViewManager {
             plateauScene = new Scene(root, 800,600);
             plateauScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
             /*build de la vue elle connait le controlleur */
-            PlateauView plateauView = new PlateauView(controller);
+            plateauView = new PlateauView(controller);
 
             /* init bouttons */
             plateauView.initialize(plateauScene);
@@ -167,9 +177,20 @@ public class ViewManager {
         return placementView;
     }
 
+    public PlateauView getPlateauScene() {
+        return plateauView;
+    }
+
     public void update(Jeu jeu) {
        // currentScene.update(jeu);
 
     }
 
+    public boolean isPlacement() {
+        return placement;
+    }
+
+    public boolean isPlateau() {
+        return plateau;
+    }
 }

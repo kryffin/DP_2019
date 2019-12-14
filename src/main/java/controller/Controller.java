@@ -26,16 +26,15 @@ public class Controller {
 
     private boolean isPlacer;
 
-    private PlacementView placementView;
+    private ViewManager vm;
 
     public Controller(Jeu j){
         jeu = j ;
         isPlacer = false;
     }
 
-    public void setPlacementView (PlacementView pv) {
-        System.out.println(pv);
-        placementView = pv;
+    public void setPlacementView (ViewManager vm) {
+        this.vm = vm;
     }
 
     public Plateau getPlateau () {
@@ -89,8 +88,7 @@ public class Controller {
 
         for(int x = 0 ; x < 10 ; x++){
             for(int y = 0 ; y <10 ;  y++) {
-                System.out.println(placementView);
-                placementView.getButton(x,y).setStyle("-fx-background-color: transparent");
+                vm.getPlacementView().getButton(x,y).setStyle("-fx-background-color: transparent");
             }
         }
 
@@ -136,7 +134,12 @@ public class Controller {
     }
 
     public void switchToPlateauView() {
-        jeu.getViewManager().displayPlateauView();
+        if (jeu.plateauBienForme()) {
+            System.out.println("Plateau bien formé, passage à la vue de jeu");
+            jeu.getViewManager().displayPlateauView();
+            return;
+        }
+        System.out.println("Plateau mal formé, on ne change pas la vue");
     }
 
     public void shoot (Tir tir) {
@@ -149,29 +152,60 @@ public class Controller {
 
     public void updateColor(){
 
+        if (vm.isPlacement()) {
+            updateColorPlacement();
+        } else if (vm.isPlateau()) {
+            updateColorPlateau();
+        }
+
+    }
+
+    private void updateColorPlacement () {
         for(int x = 0 ; x < 10 ; x++){
             for(int y = 0 ; y <10 ;  y++){
 
                 for(Bateau bateau : jeu.getPlateau().getBateaux()){
                     if(bateau.hasCompartiment(new Position(x,y))){
-                        System.out.println(placementView);
                         //System.out.println(placementView.getButton(x,y));
                         if(bateau.getCompartiment(new Position(x,y)).getArme()==LEGER){
-                            placementView.getButton(x,y).setStyle("-fx-background-color: green");
+                            vm.getPlacementView().getButton(x,y).setStyle("-fx-background-color: green");
                         } else if(bateau.getCompartiment(new Position(x,y)).getArme()==MOYENNE){
-                            placementView.getButton(x,y).setStyle("-fx-background-color: blue");
+                            vm.getPlacementView().getButton(x,y).setStyle("-fx-background-color: blue");
                         } else if(bateau.getCompartiment(new Position(x,y)).getArme()==LOURDE){
-                            placementView.getButton(x,y).setStyle("-fx-background-color: purple");
+                            vm.getPlacementView().getButton(x,y).setStyle("-fx-background-color: purple");
                         } else if(bateau.getCompartiment(new Position(x,y)).getArme()==ATOMIQUE){
-                            placementView.getButton(x,y).setStyle("-fx-background-color: orange");
+                            vm.getPlacementView().getButton(x,y).setStyle("-fx-background-color: orange");
                         } else{
-                            placementView.getButton(x,y).setStyle("-fx-background-color: white");
+                            vm.getPlacementView().getButton(x,y).setStyle("-fx-background-color: white");
                         }
                     }
                 }
             }
         }
+    }
 
+    private void updateColorPlateau () {
+        for(int x = 0 ; x < 10 ; x++){
+            for(int y = 0 ; y <10 ;  y++){
+
+                for(Bateau bateau : jeu.getPlateau().getBateaux()){
+                    if(bateau.hasCompartiment(new Position(x,y))){
+                        //System.out.println(placementView.getButton(x,y));
+                        if(bateau.getCompartiment(new Position(x,y)).getArme()==LEGER){
+                            vm.getPlateauScene().getBoutonJoueur(x,y).setStyle("-fx-background-color: green");
+                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==MOYENNE){
+                            vm.getPlateauScene().getBoutonJoueur(x,y).setStyle("-fx-background-color: blue");
+                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==LOURDE){
+                            vm.getPlateauScene().getBoutonJoueur(x,y).setStyle("-fx-background-color: purple");
+                        } else if(bateau.getCompartiment(new Position(x,y)).getArme()==ATOMIQUE){
+                            vm.getPlateauScene().getBoutonJoueur(x,y).setStyle("-fx-background-color: orange");
+                        } else{
+                            vm.getPlateauScene().getBoutonJoueur(x,y).setStyle("-fx-background-color: white");
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

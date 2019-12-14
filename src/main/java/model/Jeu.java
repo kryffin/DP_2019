@@ -173,4 +173,8 @@ public class Jeu {
         this.piloteReseau = pilote;
     }
 
+    public boolean plateauBienForme () {
+        return plateau1.plateauBienForme();
+    }
+
 }
