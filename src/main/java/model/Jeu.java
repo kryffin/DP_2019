@@ -56,16 +56,34 @@ public class Jeu {
     }
 
     public void chooseWeapon(Position position) {
+        // retire l'affichage de l'ancienne sélection
+        viewManager.getPlateauView().unselectPreviousCase();
+
+        // selection d'une arme
         currentArme = plateau1.getArme(position);
+
+        // affichage de la sélection
+        if (currentArme != null) {
+            viewManager.getPlateauView().selectCase(position);
+        }
+
+        System.out.println(currentArme);
     }
 
     public void chooseTarget(Position position){
         if (this.currentArme != null){
-            System.out.println("tir avec" + currentArme);
+            //System.out.println("tir avec " + currentArme);
             tir = new Tir(currentArme, position);
+
+            //test
+            Bilan b = new Bilan(tir.getCible());
+            b.setPattern(epoque.getPattern(tir.getArme()));
+            b.setEtats(EtatTir.TOUCHE_COULE);
+
+            recevoirBilan(b);
             return;
         }
-        System.out.println("aucune arme selectionnée");
+        //System.out.println("aucune arme selectionnée");
     }
 
     public void recevoirTir(Tir tir){
@@ -76,7 +94,7 @@ public class Jeu {
         Position[] pattern = epoque.getPattern(tir.getArme());
 
         // construction du bilan à renvoyer
-        Bilan bilan = new Bilan(pattern);
+        Bilan bilan = new Bilan(tir.getCible());
 
         // degats du tir
         int degat = epoque.getDegat(tir.getArme());
@@ -129,9 +147,9 @@ public class Jeu {
             epoque = new Epoque2();
             fabriqueEpoque = new FabriqueEpoque2();
         }
-        System.out.println("Epoque choisie : " + epoque);
+        //System.out.println("Epoque choisie : " + epoque);
         creerFlotte();
-        System.out.println("Flotte créée");
+        //System.out.println("Flotte créée");
         viewManager.displayPlacementView();
     }
 
@@ -157,7 +175,7 @@ public class Jeu {
     }
 
     public void createShip(int taille, int version, int posList) {
-        System.out.println("JE CREER UN BATEAU DE TAILLE" + taille + " A LA VERSION " + version);
+        //System.out.println("JE CREER UN BATEAU DE TAILLE" + taille + " A LA VERSION " + version);
         List<Bateau> listBateau = plateau1.getBateaux();
         List<Position> positions = listBateau.get(posList).getPositions();
         listBateau.set(posList,fabriqueEpoque.creerBateau(taille, version));
@@ -169,11 +187,25 @@ public class Jeu {
         return viewManager;
     }
 
-    public void recevoirBilan (EtatTir[] etats) {
+    public void recevoirBilan (Bilan bilan) {
         //ici on va étudier le bilan de notre attaque pour mettre à jour le plateau d'informations (celui de droite)
+
+        // positions ayant été attaquées
+        Position[] pos = new Position[bilan.getPattern().length];
+
+        // parcours du pattern pour créer les positions
+        for (int i = 0; i < bilan.getPattern().length; i++) {
+            // positions ayant été touchées
+            pos[i] = new Position(bilan.getTarget().getX() + bilan.getPattern()[i].getX(), bilan.getTarget().getY() + bilan.getPattern()[i].getY());
+        }
+
+        // parcours des états et envoie à la vue
+        for (int i = 0; i < bilan.getEtats().length; i++) {
+            viewManager.getPlateauView().changeButtonTo(pos[i], bilan.getEtats()[i]);
+        }
     }
 
-    public void envoyerBilan (EtatTir[] etats) {
+    public void envoyerBilan () {
         //ici on va envoyer le bilan au pilote pour qu'il le forward à l'adversaire
         //piloteReseau.envoyerBilan(etats);
     }

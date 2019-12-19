@@ -181,6 +181,10 @@ public class ViewManager {
         return plateauView;
     }
 
+    public PlateauView getPlateauView() {
+        return plateauView;
+    }
+
     public void update(Jeu jeu) {
        // currentScene.update(jeu);
 

@@ -18,10 +18,10 @@ public class Plateau {
     public void placement () {
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < bateaux.size(); i++) {
-            System.out.println("Placement du bateau " + i);
-            System.out.println("Choisissez la coordonnée x :");
+            //System.out.println("Placement du bateau " + i);
+            //System.out.println("Choisissez la coordonnée x :");
             int x = sc.nextInt();
-            System.out.println("Choisissez la coordonnée y :");
+            //System.out.println("Choisissez la coordonnée y :");
             int y = sc.nextInt();
             bateaux.get(i).setPosition(x, y);
         }

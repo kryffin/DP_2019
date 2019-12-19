@@ -2,11 +2,12 @@ package main.java.model;
 
 public class Bilan {
 
+    private Position target;
     private EtatTir[] etats;
     private Position[] pattern;
 
-    public Bilan (Position[] pattern) {
-        this.pattern = pattern;
+    public Bilan (Position target) {
+        this.target = target;
     }
 
     public void setEtat (EtatTir etat, Position position) {
@@ -18,4 +19,27 @@ public class Bilan {
         }
     }
 
+    public EtatTir[] getEtats() {
+        return etats;
+    }
+
+    public void setEtats(EtatTir... etats) {
+        this.etats = etats;
+    }
+
+    public Position[] getPattern() {
+        return pattern;
+    }
+
+    public void setPattern(Position... pattern) {
+        this.pattern = pattern;
+    }
+
+    public Position getTarget() {
+        return target;
+    }
+
+    public void setTarget(Position target) {
+        this.target = target;
+    }
 }

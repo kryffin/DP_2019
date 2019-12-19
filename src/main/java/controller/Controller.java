@@ -2,11 +2,8 @@ package main.java.controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import main.java.model.EtatTir;
-import main.java.model.Jeu;
-import main.java.model.Tir;
+import main.java.model.*;
 import main.java.model.plateau.Plateau;
-import main.java.model.Position;
 import main.java.model.plateau.bateau.Bateau;
 import main.java.view.ViewManager;
 
@@ -55,9 +52,10 @@ public class Controller {
         int col = tmp%10;
         int row = (tmp - col)/10;
 
+        //System.out.println("weapon clicked = " + col + " " + row);
+
         Position position = new Position(col, row);
         jeu.chooseWeapon(position);
-
     }
 
     public void chooseEpoque (int e) {
@@ -81,7 +79,7 @@ public class Controller {
                 aPlacer.setPosition(col, row);
                 afficherFlotte();
             } else {
-                System.out.println("Placement non autorisé");
+                //System.out.println("Placement non autorisé");
             }
         }
 
@@ -120,32 +118,32 @@ public class Controller {
         Bateau b = jeu.getPlateau().getBateaux().get(positionFlotte);
         this.aPlacer = b;
 
-        System.out.println("BATEAU A CHANGER : " + b.toString());
+        //System.out.println("BATEAU A CHANGER : " + b.toString());
 
     }
 
     public void afficherFlotte() {
         for (Bateau b : jeu.getPlateau().getBateaux()){
-            System.out.println(b);
+            //System.out.println(b);
         }
-        System.out.println("=======");
+        //System.out.println("=======");
     }
 
     public void switchToPlateauView() {
         if (jeu.plateauBienForme()) {
-            System.out.println("Plateau bien formé, passage à la vue de jeu");
+            //System.out.println("Plateau bien formé, passage à la vue de jeu");
             jeu.getViewManager().displayPlateauView();
             return;
         }
-        System.out.println("Plateau mal formé, on ne change pas la vue");
+        //System.out.println("Plateau mal formé, on ne change pas la vue");
     }
 
     public void recevoirTir(Tir tir) {
         jeu.recevoirTir(tir);
     }
 
-    public void recevoirBilan (EtatTir[] etats) {
-        jeu.recevoirBilan(etats);
+    public void recevoirBilan (Bilan bilan) {
+        jeu.recevoirBilan(bilan);
     }
 
     public void updateColor(){

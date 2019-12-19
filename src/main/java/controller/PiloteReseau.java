@@ -1,5 +1,6 @@
 package main.java.controller;
 
+import main.java.model.Bilan;
 import main.java.model.EtatTir;
 import main.java.model.Tir;
 
@@ -50,9 +51,9 @@ public class PiloteReseau extends UnicastRemoteObject implements Remote {
         gameController.recevoirTir(tir);
     }
 
-    public void recevoirBilan (EtatTir[] etats) {
+    public void recevoirBilan (Bilan bilan) {
         //passer le bilan au controller pour que le game le process
-        gameController.recevoirBilan(etats);
+        gameController.recevoirBilan(bilan);
     }
 
     /* CLIENT SIDE : fonction pour envoyer des informations */
@@ -65,8 +66,8 @@ public class PiloteReseau extends UnicastRemoteObject implements Remote {
         piloteAdverse.recevoirTir(tir);
     }
 
-    public void envoyerBilan (EtatTir[] etats) {
-        piloteAdverse.recevoirBilan(etats);
+    public void envoyerBilan (Bilan bilan) {
+        piloteAdverse.recevoirBilan(bilan);
     }
 
 }

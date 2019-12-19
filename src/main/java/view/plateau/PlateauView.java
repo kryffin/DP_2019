@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import main.java.controller.Controller;
+import main.java.model.EtatTir;
+import main.java.model.Position;
 import main.java.model.image.ImageManager;
 
 public class PlateauView extends AnchorPane {
@@ -18,10 +20,12 @@ public class PlateauView extends AnchorPane {
     private GridPane leftPane;
 
     private Button[][] boutonsJoueur;
+    private Button[][] boutonsAdversaire;
 
     public PlateauView(Controller c){
         this.controller = c;
         boutonsJoueur = new Button[10][10];
+        boutonsAdversaire = new Button[10][10];
     }
 
     @FXML
@@ -52,10 +56,10 @@ public class PlateauView extends AnchorPane {
 
                 //======boutons plateau adversaire============
 
-                Button bttAdv = new Button();
-                bttAdv.setPrefSize(40.0,40.0);
-                bttAdv.setStyle("-fx-background-color: transparent; -fx-background-radius: 0");
-                bttAdv.setOnAction(new EventHandler<ActionEvent>() {
+                boutonsAdversaire[w][h] = new Button();
+                boutonsAdversaire[w][h].setPrefSize(40.0,40.0);
+                boutonsAdversaire[w][h].setStyle("-fx-background-color: transparent; -fx-background-radius: 0");
+                boutonsAdversaire[w][h].setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
                         controller.tirer(event);
@@ -63,8 +67,8 @@ public class PlateauView extends AnchorPane {
                 });
                 String id2 = "A"+((h*10)+w);
                 //bttAdv.setText(id2);
-                bttAdv.setId(id2);
-                rightPane.add(bttAdv, w,h);
+                boutonsAdversaire[w][h].setId(id2);
+                rightPane.add(boutonsAdversaire[w][h], w,h);
             }
         }
 
@@ -74,13 +78,47 @@ public class PlateauView extends AnchorPane {
         rightPane.setVisible(true);
         leftPane.setVisible(true);
 
-        System.out.println("end");
-        System.out.println(leftPane.getChildren().size());
-        System.out.println(rightPane.getChildren().size());
+        //System.out.println("end");
+        //System.out.println(leftPane.getChildren().size());
+        //System.out.println(rightPane.getChildren().size());
     }
 
     public Button getBoutonJoueur (int x, int y) {
         return boutonsJoueur[x][y];
+    }
+
+    private Position selectedArme;
+
+    public void selectCase (Position p) {
+        selectedArme = p;
+        boutonsJoueur[p.getX()][p.getY()].setText("X");
+    }
+
+    public void unselectPreviousCase () {
+        if (selectedArme == null) {
+            return;
+        }
+        boutonsJoueur[selectedArme.getX()][selectedArme.getY()].setText("");
+    }
+
+    public void changeButtonTo (Position p, EtatTir et) {
+        switch (et) {
+            case TOUCHE_COULE:
+                boutonsAdversaire[p.getX()][p.getY()].setStyle("-fx-background-color: black");
+                break;
+
+            case TOUCHE:
+                boutonsAdversaire[p.getX()][p.getY()].setStyle("-fx-background-color: red");
+                break;
+
+            case LOUPE:
+                boutonsAdversaire[p.getX()][p.getY()].setStyle("-fx-background-color: blue");
+                break;
+
+            default:
+                break;
+        }
+
     }
 
 }

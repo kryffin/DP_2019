@@ -71,7 +71,7 @@ public abstract class Epoque {
 
     public List<List<Object>> getDescription(int taille) {
         List<List<Object>> res = this.caracteristiquePV.get(taille);
-        System.out.println("DEMANDE DE TAILLE "+ taille);
+        //System.out.println("DEMANDE DE TAILLE "+ taille);
         assert(res != null):"BUG EPOQUE";
         return res;
     }
