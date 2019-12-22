@@ -7,6 +7,7 @@ import main.java.model.fabriqueEpoque.FabriqueEpoque;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FabriqueEpoque1 implements FabriqueEpoque {
 
@@ -20,9 +21,7 @@ public class FabriqueEpoque1 implements FabriqueEpoque {
         bateaux.add(creerBateau3());
         bateaux.add(creerBateau4V3());
 
-        for(int i=0; i < bateaux.size(); i++){
-            bateaux.get(i).setPosition(1, i+1 );
-        }
+
         return bateaux;
     }
 

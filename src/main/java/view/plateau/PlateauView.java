@@ -115,6 +115,10 @@ public class PlateauView extends AnchorPane {
                 boutonsAdversaire[p.getX()][p.getY()].setStyle("-fx-background-color: blue");
                 break;
 
+            case COMP_COULE:
+                System.out.println("HERE");
+                boutonsAdversaire[p.getX()][p.getY()].setStyle("-fx-background-color: brown");
+                break;
             default:
                 break;
         }

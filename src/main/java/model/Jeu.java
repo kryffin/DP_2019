@@ -18,7 +18,9 @@ import main.java.model.plateau.bateau.Arme;
 import main.java.view.ViewManager;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class Jeu {
@@ -113,8 +115,10 @@ public class Jeu {
                 if(b.hasCompartiment(newPosition)){
                     // on retire de la vie au bateau
                     b.getCompartiment(newPosition).decreaseHP(degat);
-
                     // si le bateau meurs
+                    if(b.getCompartiment(newPosition).getPv() <= 0){
+                        bilan.setEtat(EtatTir.COMP_COULE, p);
+                    }
                     if(b.isDead()){
                         // etat du bilan à TOUCHE_COULE
                         bilan.setEtat(EtatTir.TOUCHE_COULE, p);
@@ -122,6 +126,7 @@ public class Jeu {
                         // sinon etat du bilan à TOUCHE
                         bilan.setEtat(EtatTir.TOUCHE, p);
                     }
+                    System.out.println("Compartiment touché : hp = " + b.getCompartiment(newPosition).getPv());
                 }
             }
         }
@@ -164,7 +169,6 @@ public class Jeu {
     public void creerFlotte () {
         // création de la flotte par rapport à l'époque
         List<Bateau> bateaux = fabriqueEpoque.creerFlotte();
-
         // affectation des armes aux bateaux
         for (int i = 0; i < bateaux.size(); i++) {
             bateaux.get(i).initArmes(epoque);
@@ -172,6 +176,13 @@ public class Jeu {
 
         plateau1 = new Plateau();
         plateau1.setBateaux(bateaux);
+        do{
+            Random rand = new Random();
+            for(int i=0; i < bateaux.size(); i++){
+                bateaux.get(i).setPosition(rand.nextInt(9-i), rand.nextInt(9) );
+            }
+            System.out.println("mal placé");
+        } while (!plateauBienForme());
     }
 
     public Plateau getPlateau () {
@@ -219,9 +230,9 @@ public class Jeu {
 
     public void envoyerBilan (Bilan etats) {
         //ici on va envoyer le bilan au pilote pour qu'il le forward à l'
-        System.out.println("== envoie du bilan à l'adversaire == ");
+        //System.out.println("== envoie du bilan à l'adversaire == ");
         piloteReseau.envoyerBilan(etats);
-        System.out.println("Passage de tour");
+        //System.out.println("Passage de tour");
 
         return;
     }
