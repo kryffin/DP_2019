@@ -6,6 +6,7 @@ import main.java.model.etat.Epoque1;
 import main.java.model.etat.Epoque2;
 import main.java.model.joueur.Humain;
 import main.java.model.joueur.Joueur;
+import main.java.model.joueur.Machine;
 import main.java.model.plateau.PlateauInfo;
 import main.java.model.plateau.bateau.Bateau;
 import main.java.model.fabriqueEpoque.FabriqueEpoque;
@@ -24,7 +25,7 @@ public class Jeu {
 
     private Plateau plateau1;
     private PlateauInfo plateau2;
-    private Joueur joueur;
+    private Machine machine;
     private Epoque epoque;
     private FabriqueEpoque fabriqueEpoque;
     private ViewManager viewManager;
@@ -36,19 +37,22 @@ public class Jeu {
 
     private boolean myTurn;
     private boolean finished;
+    public Bilan bilan;
 
 
     public Jeu(){
         plateau1 = new Plateau();
         plateau2 = new PlateauInfo();
-        joueur = new Humain();
+        machine = new Machine();
         myTurn = true;
         finished = false;
+        epoque = null;
 
     }
 
     public void update(){
-        viewManager.update(this);
+        if(viewManager!=null)
+            viewManager.update();
     }
 
     public void setViewManager (ViewManager vm) {
@@ -75,13 +79,8 @@ public class Jeu {
             //System.out.println("tir avec " + currentArme);
             tir = new Tir(currentArme, position);
 
-            //test
-            Bilan b = new Bilan(tir.getCible());
-            b.setPattern(epoque.getPattern(tir.getArme()));
-            b.setEtats(EtatTir.TOUCHE_COULE);
+            piloteReseau.envoyerTir(tir);
 
-            recevoirBilan(b);
-            return;
         }
         //System.out.println("aucune arme selectionnée");
     }
@@ -95,6 +94,8 @@ public class Jeu {
 
         // construction du bilan à renvoyer
         Bilan bilan = new Bilan(tir.getCible());
+
+        bilan.setPattern(pattern);
 
         // degats du tir
         int degat = epoque.getDegat(tir.getArme());
@@ -126,7 +127,9 @@ public class Jeu {
         }
 
         //ici on va envoyer le bilan de l'attaque reçue à l'adversaire
-        //envoyerBilan(etats);
+        this.bilan = bilan;
+        update();
+        envoyerBilan(bilan);
     }
 
     public Position calculerPosition(Position posTarget, Position pattern){
@@ -140,17 +143,22 @@ public class Jeu {
      * @param choix epoque à choisir, 0 = époque1, 1 = époque2
      */
     public void choixEpoque (int choix) {
-        if (choix == 0) {
-            epoque = new Epoque1();
-            fabriqueEpoque = new FabriqueEpoque1();
-        } else {
-            epoque = new Epoque2();
-            fabriqueEpoque = new FabriqueEpoque2();
+        if (epoque == null){
+            if (choix == 0) {
+                epoque = new Epoque1();
+                fabriqueEpoque = new FabriqueEpoque1();
+            } else {
+                epoque = new Epoque2();
+                fabriqueEpoque = new FabriqueEpoque2();
+            }
+
+            piloteReseau.renseignerEpoque(choix);
+            //System.out.println("Epoque choisie : " + epoque);
+            creerFlotte();
+            //System.out.println("Flotte créée");
+            if(viewManager!=null) //gere le cas ou c'est le CPU qui renseigne son epoque
+                viewManager.displayPlacementView();
         }
-        //System.out.println("Epoque choisie : " + epoque);
-        creerFlotte();
-        //System.out.println("Flotte créée");
-        viewManager.displayPlacementView();
     }
 
     public void creerFlotte () {
@@ -200,14 +208,22 @@ public class Jeu {
         }
 
         // parcours des états et envoie à la vue
-        for (int i = 0; i < bilan.getEtats().length; i++) {
-            viewManager.getPlateauView().changeButtonTo(pos[i], bilan.getEtats()[i]);
+        if(viewManager!=null){
+            for (int i = 0; i < bilan.getEtats().length; i++) {
+                viewManager.getPlateauView().changeButtonTo(pos[i], bilan.getEtats()[i]);
+            }
+            piloteReseau.passerTour();
         }
+
     }
 
-    public void envoyerBilan () {
-        //ici on va envoyer le bilan au pilote pour qu'il le forward à l'adversaire
-        //piloteReseau.envoyerBilan(etats);
+    public void envoyerBilan (Bilan etats) {
+        //ici on va envoyer le bilan au pilote pour qu'il le forward à l'
+        System.out.println("== envoie du bilan à l'adversaire == ");
+        piloteReseau.envoyerBilan(etats);
+        System.out.println("Passage de tour");
+
+        return;
     }
 
     public void setPiloteReseau (PiloteReseau pilote) {
@@ -218,4 +234,12 @@ public class Jeu {
         return plateau1.plateauBienForme();
     }
 
+    /**uniquement appelé pour le CPU*/
+    public void play() {
+        Arme arme = plateau1.getRandomArme();
+        Position target = machine.getTarget();
+        piloteReseau.envoyerTir(new Tir(arme, target));
+
+
+    }
 }

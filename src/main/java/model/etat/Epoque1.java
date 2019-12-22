@@ -57,24 +57,27 @@ public class Epoque1 extends Epoque {
 
     @Override
     void setLourde() {
-        List<Object> lourde = new ArrayList<>();
-        lourde.add(5);
-        lourde.add(7);
-        Position[] tmp = new Position[1];
-        tmp[0] = new Position(0,0);
-        lourde.add(tmp);
+        Position[] pattern = new Position[4];
+        pattern[0] = new Position(0,0);
+        pattern[1] = new Position(0,1);
 
-        super.put(Arme.LOURDE, lourde);
+        List<Object> tmp = setArme(5, 7, pattern);
+
+        super.put(Arme.LOURDE, tmp);
     }
 
     @Override
     void setAtomique() {
-        List<Object> atomique = new ArrayList<>();
-        atomique.add(1);
-        atomique.add(20);
-        atomique.add(new Position(0,0));
+        Position[] pattern = new Position[5];
+        pattern[1] = new Position(0,1);
+        pattern[2] = new Position(0, -1);
+        pattern[0] = new Position(0,0);
+        pattern[3] = new Position(1,0);
+        pattern[4] = new Position(-1, 0);
 
-        super.put(Arme.ATOMIQUE, atomique);
+        List<Object> tmp = setArme(10, 2, pattern);
+
+        super.put(Arme.ATOMIQUE, tmp);
     }
 
     /**

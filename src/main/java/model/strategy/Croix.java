@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Croix implements IA {
     @Override
-    public Tir comportement() {
+    public Position comportement() {
         //todo
         Random rand = new Random();
         int x_rand = rand.nextInt(10);
@@ -16,7 +16,7 @@ public class Croix implements IA {
 
         Position p1 = new Position(0,0);
         //todo choisir l'arme
-        return new Tir(Arme.LEGER, new Position(x_rand, y_rand));
+        return new Position(x_rand, y_rand);
 
     }
 }

@@ -8,12 +8,11 @@ import java.util.Random;
 
 public class Aleatoire implements IA {
     @Override
-    public Tir comportement() {
+    public Position comportement() {
         Random rand = new Random();
         int x_rand = rand.nextInt(10);
         int y_rand = rand.nextInt(10);
-        //todo choisir l'arme
-        return new Tir(Arme.LEGER, new Position(x_rand, y_rand));
+        return new Position(x_rand, y_rand);
 
     }
 }

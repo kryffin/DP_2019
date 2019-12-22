@@ -14,14 +14,25 @@ public class Model extends Application {
     private static ViewManager vm;
 
     public static void main(String[] argv) throws RemoteException, NotBoundException {
-        Jeu jeu = new Jeu();
-        Controller controller = new Controller(jeu);
+        Jeu jeuClient = new Jeu();
+        Controller controller = new Controller(jeuClient);
 
         vm = new ViewManager(controller);
-        jeu.setViewManager(vm); //liaison
+        jeuClient.setViewManager(vm); //liaison
 
         PiloteReseau pilote = new PiloteReseau(controller);
-        jeu.setPiloteReseau(pilote);
+        jeuClient.setPiloteReseau(pilote);
+
+        /* création d'un adversaire */
+        Jeu jeuAdversaire = new Jeu();
+        Controller controllerAdversaire = new Controller(jeuAdversaire);
+        PiloteReseau piloteAdversaire = new PiloteReseau(controllerAdversaire);
+        jeuAdversaire.setPiloteReseau(piloteAdversaire);
+
+        piloteAdversaire.setPiloteAdverse(pilote);
+        pilote.setPiloteAdverse(piloteAdversaire);
+
+
         launch(argv);
     }
 

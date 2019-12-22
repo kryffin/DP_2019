@@ -185,8 +185,7 @@ public class ViewManager {
         return plateauView;
     }
 
-    public void update(Jeu jeu) {
-       // currentScene.update(jeu);
+    public void update() { controller.update();
 
     }
 

@@ -77,4 +77,18 @@ public class Plateau {
 
         return sb.toString();
     }
+
+    public Arme getRandomArme() {
+        Arme arme = null;
+        int size = this.bateaux.size();
+        Random rand = new Random();
+        while(arme==null){
+            int int_r = rand.nextInt(size);
+            Bateau b = this.getBateaux().get(int_r);
+            int size2 = b.getNbCompartiement();
+            int int_r2 = rand.nextInt(size2);
+            arme = b.getArme(b.getPositions().get(int_r2));
+        }
+        return arme;
+    }
 }

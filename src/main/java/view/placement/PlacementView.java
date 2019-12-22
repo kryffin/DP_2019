@@ -44,7 +44,7 @@ public class PlacementView implements Observer {
 
     public PlacementView(Controller controller){
         this.controller = controller;
-        popUpStage = new Stage();
+        popUpStage = null;
         selection = new Label("");
         buttons = new Button[10][10];
     }
@@ -64,8 +64,8 @@ public class PlacementView implements Observer {
         p1.setStyle("-fx-background-color: white;");
         p2.setStyle("-fx-background-color: green;");
         p3.setStyle("-fx-background-color: blue;");
-        p4.setStyle("-fx-background-color: purple;");
-        p5.setStyle("-fx-background-color: orange;");
+        p4.setStyle("-fx-background-color: orange;");
+        p5.setStyle("-fx-background-color: purple;");
         tmp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -109,6 +109,7 @@ public class PlacementView implements Observer {
             int finalI = i;
             buttons[i].setOnAction(event -> {
                 int taille = b.getNbCompartiement();
+                popUpStage = new Stage();
                 initPopUp(taille, finalI, popUpStage);
 
 
@@ -130,6 +131,7 @@ public class PlacementView implements Observer {
         }
 
         leftPane.getChildren().add(selection);
+        //controller.updateColor();
     }
     public void initPopUp(int taille, int posList, Stage popUpStage) {
         try {

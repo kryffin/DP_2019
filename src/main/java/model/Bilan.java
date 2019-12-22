@@ -33,6 +33,7 @@ public class Bilan {
 
     public void setPattern(Position... pattern) {
         this.pattern = pattern;
+        etats = new EtatTir[pattern.length];
     }
 
     public Position getTarget() {

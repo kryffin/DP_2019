@@ -204,4 +204,15 @@ public class Controller {
         }
     }
 
+    /**uniquement appellé pour le CPU*/
+    public void play() {
+        jeu.play();
+    }
+
+    public void update() {
+        for(Position p : jeu.bilan.getPattern())
+            vm.getPlateauScene().getBoutonJoueur(p.getX(), p.getY()).setText("HIT");
+
+
+    }
 }

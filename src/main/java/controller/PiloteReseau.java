@@ -58,6 +58,8 @@ public class PiloteReseau extends UnicastRemoteObject implements Remote {
 
     /* CLIENT SIDE : fonction pour envoyer des informations */
 
+    public void setPiloteAdverse (PiloteReseau piloteAdverse){ this.piloteAdverse = piloteAdverse; }
+
     public void renseignerEpoque (int choix) {
         piloteAdverse.choisirEpoque(choix);
     }
@@ -70,4 +72,11 @@ public class PiloteReseau extends UnicastRemoteObject implements Remote {
         piloteAdverse.recevoirBilan(bilan);
     }
 
+    public void passerTour() {
+        piloteAdverse.jouer();
+    }
+
+    private void jouer() {
+        gameController.play();
+    }
 }

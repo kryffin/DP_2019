@@ -72,7 +72,7 @@ public class PlateauView extends AnchorPane {
             }
         }
 
-        System.out.println(leftPane.getChildren().size());
+        //System.out.println(leftPane.getChildren().size());
         rightPane.setGridLinesVisible(true);
         leftPane.setGridLinesVisible(true);
         rightPane.setVisible(true);
