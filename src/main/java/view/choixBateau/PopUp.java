@@ -62,6 +62,7 @@ public class PopUp {
                 @Override
                 public void handle(ActionEvent event) {
                     controller.createShip(taille, finalI, posList);
+                    controller.updateColor();
                     stage.close();
                 }
             });

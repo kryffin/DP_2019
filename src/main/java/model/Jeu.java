@@ -130,6 +130,7 @@ public class Jeu {
                         // sinon etat du bilan à TOUCHE
                         bilan.setEtat(EtatTir.TOUCHE, p);
                     }
+
                     System.out.println("Compartiment touché : hp = " + b.getCompartiment(newPosition).getPv());
                 }
             }
