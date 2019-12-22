@@ -33,6 +33,22 @@ public class PlateauView extends AnchorPane {
         int i = 0;
         rightPane = (GridPane) scene.lookup("#adversaire");
         leftPane = (GridPane) scene.lookup("#joueur");
+        Button croix = (Button) scene.lookup("#stratCroix");
+        Button rand = (Button) scene.lookup("#stratRand");
+
+        croix.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                controller.setStrat(1);
+            }
+        });
+
+        rand.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                controller.setStrat(2);
+            }
+        });
 
 
         for(int h = 0; h<10; h++){
@@ -102,9 +118,25 @@ public class PlateauView extends AnchorPane {
     }
 
     public void changeButtonTo (Position p, EtatTir et) {
+        if(p.getX()<0 || p.getX() > 9 || p.getY() <0 || p.getY()>9){
+            return;
+        }
         switch (et) {
             case TOUCHE_COULE:
-                boutonsAdversaire[p.getX()][p.getY()].setStyle("-fx-background-color: black");
+                for(int i=0; i < 4; i++){ //colorie tout le bateau en noir
+                    if(p.getX()+i >= 10 || p.getX()-i < 0){
+                        break;
+                    }
+                    if(boutonsAdversaire[p.getX()-i][p.getY()].getStyle().equals("-fx-background-color: red") ||
+                            boutonsAdversaire[p.getX()-i][p.getY()].getStyle().equals("-fx-background-color: brown")){
+                        boutonsAdversaire[p.getX()-i][p.getY()].setStyle("-fx-background-color: black");
+                    }
+
+                    if(boutonsAdversaire[p.getX()+i][p.getY()].getStyle().equals("-fx-background-color: red") ||
+                            boutonsAdversaire[p.getX()+i][p.getY()].getStyle().equals("-fx-background-color: brown")){
+                        boutonsAdversaire[p.getX()+i][p.getY()].setStyle("-fx-background-color: black");
+                    }
+                }
                 break;
 
             case TOUCHE:

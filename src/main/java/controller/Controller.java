@@ -216,4 +216,8 @@ public class Controller {
 
 
     }
+
+    public void setStrat(int i) {
+        jeu.setStrat(i);
+    }
 }

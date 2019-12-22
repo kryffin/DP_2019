@@ -15,6 +15,8 @@ import main.java.model.fabriqueEpoque.fabriqueEpoque2.FabriqueEpoque2;
 import main.java.model.plateau.Plateau;
 import main.java.model.plateau.bateau.Arme;
 
+import main.java.model.strategy.Aleatoire;
+import main.java.model.strategy.Croix;
 import main.java.view.ViewManager;
 
 import java.rmi.RemoteException;
@@ -116,12 +118,11 @@ public class Jeu {
                     // on retire de la vie au bateau
                     b.getCompartiment(newPosition).decreaseHP(degat);
                     // si le bateau meurs
-                    if(b.getCompartiment(newPosition).getPv() <= 0){
-                        bilan.setEtat(EtatTir.COMP_COULE, p);
-                    }
-                    if(b.isDead()){
+                    if(b.isDead()) {
                         // etat du bilan à TOUCHE_COULE
                         bilan.setEtat(EtatTir.TOUCHE_COULE, p);
+                    }else if(b.getCompartiment(newPosition).getPv() <= 0){
+                            bilan.setEtat(EtatTir.COMP_COULE, p);
                     }else{
                         // sinon etat du bilan à TOUCHE
                         bilan.setEtat(EtatTir.TOUCHE, p);
@@ -252,5 +253,16 @@ public class Jeu {
         piloteReseau.envoyerTir(new Tir(arme, target));
 
 
+    }
+
+    public void setStrat(int i) {
+        switch (i){
+            case 1:
+                machine.setComportement(new Croix());
+                break;
+            case 2:
+                machine.setComportement(new Aleatoire());
+                break;
+        }
     }
 }

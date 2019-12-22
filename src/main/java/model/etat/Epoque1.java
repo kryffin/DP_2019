@@ -57,7 +57,7 @@ public class Epoque1 extends Epoque {
 
     @Override
     void setLourde() {
-        Position[] pattern = new Position[4];
+        Position[] pattern = new Position[2];
         pattern[0] = new Position(0,0);
         pattern[1] = new Position(0,1);
 
