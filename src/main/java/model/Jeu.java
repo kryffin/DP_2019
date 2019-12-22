@@ -15,6 +15,7 @@ import main.java.model.fabriqueEpoque.fabriqueEpoque2.FabriqueEpoque2;
 import main.java.model.plateau.Plateau;
 import main.java.model.plateau.bateau.Arme;
 
+import main.java.model.plateau.bateau.Compartiment;
 import main.java.model.strategy.Aleatoire;
 import main.java.model.strategy.Croix;
 import main.java.view.ViewManager;
@@ -42,6 +43,7 @@ public class Jeu {
     private boolean myTurn;
     private boolean finished;
     public Bilan bilan;
+    private Position armePosition;
 
 
     public Jeu(){
@@ -72,6 +74,7 @@ public class Jeu {
 
         // affichage de la sélection
         if (currentArme != null) {
+            this.armePosition = position;
             viewManager.getPlateauView().selectCase(position);
         }
 
@@ -82,7 +85,7 @@ public class Jeu {
         if (this.currentArme != null){
             //System.out.println("tir avec " + currentArme);
             tir = new Tir(currentArme, position);
-
+            plateau1.getCompartiment(armePosition).decreaseMunition();
             piloteReseau.envoyerTir(tir);
 
         }
@@ -135,7 +138,31 @@ public class Jeu {
         //ici on va envoyer le bilan de l'attaque reçue à l'adversaire
         this.bilan = bilan;
         update();
-        envoyerBilan(bilan);
+        if(!isFinished()) {
+            envoyerBilan(bilan);
+        } else {
+            System.out.println("FINISHED");
+        }
+    }
+
+    private boolean isFinished() {
+        for(Bateau b : plateau1.getBateaux()){
+            if(!b.isDead()) {
+                finished = false;
+                return false;
+            }
+        }
+
+        for (Bateau b : plateau1.getBateaux()){
+            for(int i = 0; i < b.getNbCompartiement(); i++){
+                if(b.getCompartiment(i).getPv() > 0 || b.getCompartiment(i).getMunition() > 0){
+                    finished = false;
+                    return false;
+                }
+            }
+        }
+
+        return  true;
     }
 
     public Position calculerPosition(Position posTarget, Position pattern){
@@ -152,10 +179,10 @@ public class Jeu {
         if (epoque == null){
             if (choix == 0) {
                 epoque = new Epoque1();
-                fabriqueEpoque = new FabriqueEpoque1();
+                fabriqueEpoque = new FabriqueEpoque1(epoque);
             } else {
                 epoque = new Epoque2();
-                fabriqueEpoque = new FabriqueEpoque2();
+                fabriqueEpoque = new FabriqueEpoque2(epoque);
             }
 
             piloteReseau.renseignerEpoque(choix);

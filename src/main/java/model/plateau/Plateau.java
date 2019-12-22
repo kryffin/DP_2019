@@ -3,6 +3,7 @@ package main.java.model.plateau;
 import main.java.model.Position;
 import main.java.model.plateau.bateau.Arme;
 import main.java.model.plateau.bateau.Bateau;
+import main.java.model.plateau.bateau.Compartiment;
 
 import java.util.*;
 import java.util.List;
@@ -91,4 +92,16 @@ public class Plateau {
         }
         return arme;
     }
+
+    public Compartiment getCompartiment(Position position) {
+        for(Bateau b : bateaux){
+            for(int i = 0; i < b.getNbCompartiement(); i++){
+                if(b.getCompartiment(i).getPosition().equals(position)){
+                    return b.getCompartiment(i);
+                }
+            }
+        }
+        return null;
+    }
+
 }

@@ -11,20 +11,28 @@ public class Compartiment {
     private Position position;
 
 
-    public Compartiment(int pv, Arme arme, Position position){
+    public Compartiment(int pv, Arme arme, Position position, int munition){
         this.pv = pv;
         this.arme = arme;
         this.position = position;
+        this.munitionActuel = munition;
     }
 
     public Arme getArme(){
-        return this.arme;
+        if(munitionActuel > 0){
+            return this.arme;
+
+        }
+        return null;
     }
 
     public Position getPosition(){
         return position;
     }
 
+    public void decreaseMunition(){
+        this.munitionActuel -= 1;
+    }
     public void setMunitionActuel(int munitionActuel) {
         this.munitionActuel = munitionActuel;
     }
@@ -50,5 +58,9 @@ public class Compartiment {
 
     public void setPosition(Position p) {
         this.position = p;
+    }
+
+    public int getMunition() {
+        return munitionActuel;
     }
 }

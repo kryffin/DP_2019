@@ -9,10 +9,11 @@ public class Bateau {
 
     private List<Compartiment> compartiments;
 
-    public Bateau(int taille, int pv, Arme... armes) {
+    public Bateau(int taille, int pv, Epoque e, Arme... armes) {
         compartiments = new ArrayList<>();
         for (int i = 0; i < taille; i++) {
-            compartiments.add(new Compartiment(pv, armes[i],new Position(i, 0)));
+            int munition = e.getMunition(armes[i]);
+            compartiments.add(new Compartiment(pv, armes[i],new Position(i, 0), munition));
             //todo recuperer les munitions actuels en fonction de l'arme et demander à l'époque
         }
     }
@@ -105,5 +106,9 @@ public class Bateau {
             res.add(c.getPosition());
         }
         return res;
+    }
+
+    public Compartiment getCompartiment(int i) {
+        return compartiments.get(i);
     }
 }

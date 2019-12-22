@@ -53,6 +53,9 @@ public abstract class Epoque {
     }
 
     public int getMunition(Arme a){
+        if(a==null){
+            return 0;
+        }
         return getParam(a,1);
     }
 
