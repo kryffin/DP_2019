@@ -9,6 +9,7 @@ import java.util.Random;
 public class Aleatoire implements IA {
     @Override
     public Position comportement() {
+        System.out.println("HERE STRAT RAND");
         Random rand = new Random();
         int x_rand = rand.nextInt(10);
         int y_rand = rand.nextInt(10);

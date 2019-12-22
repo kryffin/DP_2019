@@ -18,6 +18,7 @@ import main.java.model.plateau.bateau.Arme;
 import main.java.model.plateau.bateau.Compartiment;
 import main.java.model.strategy.Aleatoire;
 import main.java.model.strategy.Croix;
+import main.java.model.strategy.IA;
 import main.java.view.ViewManager;
 
 import java.rmi.RemoteException;
@@ -44,6 +45,7 @@ public class Jeu {
     private boolean finished;
     public Bilan bilan;
     private Position armePosition;
+    private IA croix;
 
 
     public Jeu(){
@@ -53,6 +55,7 @@ public class Jeu {
         myTurn = true;
         finished = false;
         epoque = null;
+        croix = new Croix();
 
     }
 
@@ -284,13 +287,24 @@ public class Jeu {
     }
 
     public void setStrat(int i) {
-        switch (i){
-            case 1:
-                machine.setComportement(new Croix());
-                break;
-            case 2:
-                machine.setComportement(new Aleatoire());
-                break;
+        if(viewManager==null){
+            switch (i){
+                case 1:
+                    machine.setComportement(croix);
+                    break;
+                case 2:
+                    machine.setComportement(new Aleatoire());
+                    break;
+            }
+        } else {
+            switch (i){
+                case 1:
+                    piloteReseau.setComportement(i);
+                    break;
+                case 2:
+                    piloteReseau.setComportement(i);
+                    break;
+            }
         }
     }
 }

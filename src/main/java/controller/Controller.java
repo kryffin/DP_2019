@@ -218,6 +218,7 @@ public class Controller {
     }
 
     public void setStrat(int i) {
+        System.out.println("SET STRAT + "+ i);
         jeu.setStrat(i);
     }
 }

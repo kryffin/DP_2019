@@ -79,4 +79,12 @@ public class PiloteReseau extends UnicastRemoteObject implements Remote {
     private void jouer() {
         gameController.play();
     }
+
+    public void setComportement(int i) {
+        piloteAdverse.getComportement(i);
+    }
+
+    private void getComportement(int i) {
+        gameController.setStrat(i);
+    }
 }

@@ -15,6 +15,7 @@ public class Machine extends Joueur {
     }
 
     public void setComportement(IA ia){
+        System.out.println("changement de strategie en " + ia.getClass().getName());
         this.ia = ia;
     }
     public Position getTarget(){
