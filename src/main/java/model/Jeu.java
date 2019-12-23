@@ -146,7 +146,7 @@ public class Jeu {
                         bilan.setEtat(EtatTir.TOUCHE, p);
                     }
 
-                    System.out.println("Compartiment touché : hp = " + b.getCompartiment(newPosition).getPv());
+                   // System.out.println("Compartiment touché : hp = " + b.getCompartiment(newPosition).getPv());
                 }
             }
         }

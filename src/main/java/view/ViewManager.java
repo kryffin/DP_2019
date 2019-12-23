@@ -123,7 +123,7 @@ public class ViewManager {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("epoque/epoqueView.fxml"));
             epoqueScene = new Scene(root, 800,600);
-            epoqueScene.getStylesheets().addAll(this.getClass().getResource("../view/style.css").toExternalForm());
+            epoqueScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
 
             /*build de la vue elle connait le controlleur */
             EpoqueView epoqueView = new EpoqueView(controller);
