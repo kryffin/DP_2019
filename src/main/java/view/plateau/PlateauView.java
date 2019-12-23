@@ -5,12 +5,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import main.java.controller.Controller;
 import main.java.model.EtatTir;
 import main.java.model.Position;
 import main.java.model.image.ImageManager;
+import main.java.model.plateau.bateau.Compartiment;
 
 public class PlateauView extends AnchorPane {
     private Controller controller;
@@ -21,6 +23,9 @@ public class PlateauView extends AnchorPane {
 
     private Button[][] boutonsJoueur;
     private Button[][] boutonsAdversaire;
+
+    @FXML
+    private Label compStat;
 
     public PlateauView(Controller c){
         this.controller = c;
@@ -35,7 +40,7 @@ public class PlateauView extends AnchorPane {
         leftPane = (GridPane) scene.lookup("#joueur");
         Button croix = (Button) scene.lookup("#stratCroix");
         Button rand = (Button) scene.lookup("#stratRand");
-
+        compStat = (Label) scene.lookup("#compStat");
         croix.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -128,12 +133,12 @@ public class PlateauView extends AnchorPane {
                         break;
                     }
                     if(boutonsAdversaire[p.getX()-i][p.getY()].getStyle().equals("-fx-background-color: red") ||
-                            boutonsAdversaire[p.getX()-i][p.getY()].getStyle().equals("-fx-background-color: brown")){
+                            boutonsAdversaire[p.getX()-i][p.getY()].getStyle().equals("-fx-background-color: purple")){
                         boutonsAdversaire[p.getX()-i][p.getY()].setStyle("-fx-background-color: black");
                     }
 
                     if(boutonsAdversaire[p.getX()+i][p.getY()].getStyle().equals("-fx-background-color: red") ||
-                            boutonsAdversaire[p.getX()+i][p.getY()].getStyle().equals("-fx-background-color: brown")){
+                            boutonsAdversaire[p.getX()+i][p.getY()].getStyle().equals("-fx-background-color: purple")){
                         boutonsAdversaire[p.getX()+i][p.getY()].setStyle("-fx-background-color: black");
                     }
                 }
@@ -148,8 +153,7 @@ public class PlateauView extends AnchorPane {
                 break;
 
             case COMP_COULE:
-                System.out.println("HERE");
-                boutonsAdversaire[p.getX()][p.getY()].setStyle("-fx-background-color: brown");
+                boutonsAdversaire[p.getX()][p.getY()].setStyle("-fx-background-color: purple");
                 break;
             default:
                 break;
@@ -157,4 +161,7 @@ public class PlateauView extends AnchorPane {
 
     }
 
+    public void afficherComp(Compartiment compartiment) {
+        compStat.setText(compartiment.toString());
+    }
 }

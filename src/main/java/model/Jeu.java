@@ -46,6 +46,7 @@ public class Jeu {
     public Bilan bilan;
     private Position armePosition;
     private IA croix;
+    private Compartiment compartiment;
 
 
     public Jeu(){
@@ -61,13 +62,17 @@ public class Jeu {
 
     public void update(){
         if(viewManager!=null)
-            viewManager.update();
+            viewManager.update(this);
     }
 
     public void setViewManager (ViewManager vm) {
         this.viewManager = vm;
     }
 
+    /**
+     * choisi une arme dans à la position
+     * @param position
+     */
     public void chooseWeapon(Position position) {
         // retire l'affichage de l'ancienne sélection
         viewManager.getPlateauView().unselectPreviousCase();
@@ -75,17 +80,24 @@ public class Jeu {
         // selection d'une arme
         currentArme = plateau1.getArme(position);
 
+        this.compartiment = plateau1.getCompartiment(position);
+        if(compartiment!=null){
+            viewManager.getPlateauScene().afficherComp(compartiment);
+        }
         // affichage de la sélection
-        if (currentArme != null) {
+        if (currentArme != null && plateau1.getCompartiment(position).getMunition()>0) {
             this.armePosition = position;
             viewManager.getPlateauView().selectCase(position);
         }
 
-        System.out.println(currentArme);
     }
 
+    /**
+     * tire à la position
+     * @param position
+     */
     public void chooseTarget(Position position){
-        if (this.currentArme != null){
+        if (this.currentArme != null && compartiment.getMunition()>0){
             //System.out.println("tir avec " + currentArme);
             tir = new Tir(currentArme, position);
             plateau1.getCompartiment(armePosition).decreaseMunition();
@@ -306,5 +318,9 @@ public class Jeu {
                     break;
             }
         }
+    }
+
+    public Compartiment getCompartiment() {
+        return compartiment;
     }
 }

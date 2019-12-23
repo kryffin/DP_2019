@@ -185,7 +185,8 @@ public class ViewManager {
         return plateauView;
     }
 
-    public void update() { controller.update();
+    public void update(Jeu jeu) { controller.update();
+        plateauView.afficherComp(jeu.getCompartiment());
 
     }
 

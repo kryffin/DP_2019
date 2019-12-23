@@ -19,7 +19,6 @@ public class Croix implements IA {
         int x_rand = rand.nextInt(7)+1;
         int y_rand = rand.nextInt(7)+1;
         if (pos==null || cpt > 3){
-            System.out.println("HERE CROIX");
             cpt = 0;
             pos = new Position(x_rand, y_rand);
             pool = new Position[4];

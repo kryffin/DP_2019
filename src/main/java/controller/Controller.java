@@ -210,6 +210,7 @@ public class Controller {
     }
 
     public void update() {
+
         Position ref = jeu.bilan.getTarget();
         for(Position p : jeu.bilan.getPattern())
             vm.getPlateauScene().getBoutonJoueur(ref.getX()+p.getX(), ref.getY()+p.getY()).setText("O");

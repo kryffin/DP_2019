@@ -43,7 +43,7 @@ public class Compartiment {
 
     @Override
     public String toString() {
-        return "Compartiment<" + pv + "," + munitionActuel + "," + arme + " Position : "+ position + ">\n";
+        return "Compartiment<" + pv + "," + munitionActuel + "," + arme + " Position : "+ position + " Ammo : " + munitionActuel + ">\n";
     }
 
 
