@@ -212,8 +212,13 @@ public class Controller {
     public void update() {
 
         Position ref = jeu.bilan.getTarget();
-        for(Position p : jeu.bilan.getPattern())
-            vm.getPlateauScene().getBoutonJoueur(ref.getX()+p.getX(), ref.getY()+p.getY()).setText("O");
+        for(Position p : jeu.bilan.getPattern()){
+            int x = ref.getX()+p.getX();
+            int y = ref.getY()+p.getY();
+            if(x>=0 && x<=9 && y>=0 && y<=9){
+                vm.getPlateauScene().getBoutonJoueur(x, y).setText("O");
+            }
+        }
 
 
     }
@@ -226,9 +231,9 @@ public class Controller {
     public void setWin(boolean finished) {
         if(vm!=null){
             if(finished){ //l'adversaire a perdu on a gagné
-                vm.getPlateauView().setLoose();
-            } else {
                 vm.getPlateauView().setWin();
+            } else {
+                vm.getPlateauView().setLoose();
             }
         }
     }

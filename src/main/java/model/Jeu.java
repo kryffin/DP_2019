@@ -85,7 +85,7 @@ public class Jeu {
             viewManager.getPlateauScene().afficherComp(compartiment);
         }
         // affichage de la sélection
-        if (currentArme != null && plateau1.getCompartiment(position).getMunition()>0) {
+        if (currentArme != null && compartiment.getMunition()>0 && compartiment.getPv() > 0) {
             this.armePosition = position;
             viewManager.getPlateauView().selectCase(position);
         }
@@ -97,7 +97,7 @@ public class Jeu {
      * @param position
      */
     public void chooseTarget(Position position){
-        if (this.currentArme != null && compartiment.getMunition()>0){
+        if (currentArme != null && compartiment.getMunition()>0 && compartiment.getPv() > 0){
             //System.out.println("tir avec " + currentArme);
             tir = new Tir(currentArme, position);
             plateau1.getCompartiment(armePosition).decreaseMunition();
@@ -154,11 +154,13 @@ public class Jeu {
         //ici on va envoyer le bilan de l'attaque reçue à l'adversaire
         this.bilan = bilan;
         update();
+
         if(!isFinished()) {
             envoyerBilan(bilan);
         } else {
             piloteReseau.envoyerFin(finished);
-            viewManager.getPlateauView().setLoose();
+            if(viewManager!=null)
+                viewManager.getPlateauView().setLoose();
         }
     }
 
@@ -326,5 +328,18 @@ public class Jeu {
 
     public Compartiment getCompartiment() {
         return compartiment;
+    }
+
+    public List<Compartiment> getDeadComp() {
+        List res = new ArrayList();
+        for(Bateau b: plateau1.getBateaux()){
+            for (int i = 0; i < b.getNbCompartiement(); i++){
+                if(b.getCompartiment(i).getPv() <= 0){
+                    res.add(b.getCompartiment(i));
+                }
+            }
+        }
+
+        return res;
     }
 }

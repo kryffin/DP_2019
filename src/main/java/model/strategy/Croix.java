@@ -14,7 +14,6 @@ public class Croix implements IA {
 
     @Override
     public Position comportement() {
-        System.out.println("strat croix");
         Random rand = new Random();
         int x_rand = rand.nextInt(7)+1;
         int y_rand = rand.nextInt(7)+1;

@@ -19,9 +19,9 @@ public class FabriqueEpoque2 implements FabriqueEpoque {
         List<Bateau> bateaux = new ArrayList<>();
 
         bateaux.add(creerBateau1());
-        bateaux.add(creerBateau1());
-        bateaux.add(creerBateau1());
-        bateaux.add(creerBateau1());
+        bateaux.add(creerBateau2V2());
+        bateaux.add(creerBateau4V2());
+        bateaux.add(creerBateau4V3());
 
         return bateaux;
     }

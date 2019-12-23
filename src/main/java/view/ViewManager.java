@@ -187,6 +187,7 @@ public class ViewManager {
 
     public void update(Jeu jeu) { controller.update();
         plateauView.afficherComp(jeu.getCompartiment());
+        plateauView.afficherDeadComp(jeu.getDeadComp());
 
     }
 

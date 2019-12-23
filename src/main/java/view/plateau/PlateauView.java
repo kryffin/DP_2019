@@ -14,6 +14,8 @@ import main.java.model.Position;
 import main.java.model.image.ImageManager;
 import main.java.model.plateau.bateau.Compartiment;
 
+import java.util.List;
+
 public class PlateauView extends AnchorPane {
     private Controller controller;
     @FXML
@@ -177,5 +179,12 @@ public class PlateauView extends AnchorPane {
     public void setLoose() {
         this.endGame.setText("YOU LOOSE !!");
 
+    }
+
+    public void afficherDeadComp(List<Compartiment> deadComp) {
+        for(Compartiment c : deadComp){
+            boutonsJoueur[c.getPosition().getX()][c.getPosition().getY()].setStyle("-fx-background-color: black");
+            boutonsJoueur[c.getPosition().getX()][c.getPosition().getY()].setText("KO");
+        }
     }
 }
