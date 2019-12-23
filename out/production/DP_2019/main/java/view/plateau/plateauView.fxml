@@ -6,9 +6,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutY="100.0" prefHeight="400.0" prefWidth="800.0">
          <children>
@@ -66,23 +68,35 @@
             </GridPane>
          </children>
       </HBox>
-      <GridPane layoutX="347.0" layoutY="501.0" prefHeight="130.0" prefWidth="134.0">
+      <GridPane layoutX="1.0" layoutY="501.0" prefHeight="99.0" prefWidth="788.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.0" minWidth="10.0" prefWidth="655.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="133.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="71.19998779296876" minHeight="10.0" prefHeight="71.19998779296876" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="95.20001220703125" minHeight="10.0" prefHeight="59.20001220703125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="71.19998779296876" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="107.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <HBox prefHeight="60.0" prefWidth="131.0" GridPane.rowIndex="1">
+            <HBox prefHeight="60.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Croix" fx:id="stratCroix"/>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Aléatoire" fx:id="stratRand"/>
+                  <Button fx:id="stratCroix" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Croix" />
+                  <Button fx:id="stratRand" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Aléatoire" />
                </children>
             </HBox>
-            <Label prefHeight="18.0" prefWidth="142.0" text="Changer la stratégie" />
+            <Label prefHeight="18.0" prefWidth="142.0" text="Changer la stratégie" GridPane.columnIndex="1" />
+            <Label prefHeight="27.0" prefWidth="134.0" text="Compartiment engagé : " />
+            <Label fx:id="compStat" prefHeight="44.0" prefWidth="364.0" GridPane.rowIndex="1" />
          </children>
       </GridPane>
+      <Pane prefHeight="99.0" prefWidth="800.0">
+         <children>
+            <Label fx:id="endGame" layoutX="-1.0" prefHeight="103.0" prefWidth="802.0" textFill="RED" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font size="70.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

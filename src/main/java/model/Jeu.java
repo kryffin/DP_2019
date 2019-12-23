@@ -157,28 +157,32 @@ public class Jeu {
         if(!isFinished()) {
             envoyerBilan(bilan);
         } else {
-            System.out.println("FINISHED");
+            piloteReseau.envoyerFin(finished);
+            viewManager.getPlateauView().setLoose();
         }
     }
 
     private boolean isFinished() {
+        boolean b1 = true;
+        boolean b2 = true;
+
+        //check si on a encore un bateau
         for(Bateau b : plateau1.getBateaux()){
             if(!b.isDead()) {
-                finished = false;
-                return false;
+                b1 = false;
             }
         }
 
+        //check si on a encore des munitions
         for (Bateau b : plateau1.getBateaux()){
             for(int i = 0; i < b.getNbCompartiement(); i++){
-                if(b.getCompartiment(i).getPv() > 0 || b.getCompartiment(i).getMunition() > 0){
-                    finished = false;
-                    return false;
+                if(b.getCompartiment(i).getMunition() > 0){
+                    b2 = false;
                 }
             }
         }
-
-        return  true;
+        finished = b1 || b2;
+        return finished;
     }
 
     public Position calculerPosition(Position posTarget, Position pattern){

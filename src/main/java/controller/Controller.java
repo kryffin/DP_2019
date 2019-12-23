@@ -222,4 +222,14 @@ public class Controller {
         System.out.println("SET STRAT + "+ i);
         jeu.setStrat(i);
     }
+
+    public void setWin(boolean finished) {
+        if(vm!=null){
+            if(finished){ //l'adversaire a perdu on a gagné
+                vm.getPlateauView().setLoose();
+            } else {
+                vm.getPlateauView().setWin();
+            }
+        }
+    }
 }

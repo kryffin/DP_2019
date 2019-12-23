@@ -27,6 +27,9 @@ public class PlateauView extends AnchorPane {
     @FXML
     private Label compStat;
 
+    @FXML
+    private Label endGame;
+
     public PlateauView(Controller c){
         this.controller = c;
         boutonsJoueur = new Button[10][10];
@@ -41,6 +44,7 @@ public class PlateauView extends AnchorPane {
         Button croix = (Button) scene.lookup("#stratCroix");
         Button rand = (Button) scene.lookup("#stratRand");
         compStat = (Label) scene.lookup("#compStat");
+        endGame = (Label) scene.lookup("#endGame");
         croix.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -163,5 +167,15 @@ public class PlateauView extends AnchorPane {
 
     public void afficherComp(Compartiment compartiment) {
         compStat.setText(compartiment.toString());
+    }
+
+    public void setWin() {
+        this.endGame.setText("YOU WIN !!");
+
+    }
+
+    public void setLoose() {
+        this.endGame.setText("YOU LOOSE !!");
+
     }
 }

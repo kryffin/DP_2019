@@ -87,4 +87,12 @@ public class PiloteReseau extends UnicastRemoteObject implements Remote {
     private void getComportement(int i) {
         gameController.setStrat(i);
     }
+
+    public void envoyerFin(boolean finished) {
+        piloteAdverse.recevoirFin(finished);
+    }
+
+    private void recevoirFin(boolean finished) {
+        this.gameController.setWin(finished);
+    }
 }
